@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=3 uid="uid://scu3pvp6we0w"]
+[gd_scene load_steps=5 format=3 uid="uid://scu3pvp6we0w"]
 
-[ext_resource type="Script" path="res://Scripts/test.gd" id="1_4p7ik"]
 [ext_resource type="PackedScene" uid="uid://ky7xg6vuuc3i" path="res://Scenes/TabsOverlayEntry.tscn" id="1_bcqd5"]
 [ext_resource type="Script" path="res://Scripts/TabsOverlayController.gd" id="1_tg2da"]
 
@@ -18,7 +17,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("1_4p7ik")
+script = ExtResource("1_tg2da")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 clip_children = 1
@@ -34,7 +33,6 @@ offset_bottom = 1329.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 35
-script = ExtResource("1_tg2da")
 
 [node name="Tab" parent="TextureRect/VBoxContainer" instance=ExtResource("1_bcqd5")]
 layout_mode = 2
