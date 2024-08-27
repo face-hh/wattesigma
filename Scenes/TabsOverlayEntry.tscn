@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://ky7xg6vuuc3i"]
+[gd_scene load_steps=4 format=3 uid="uid://ky7xg6vuuc3i"]
 
 [ext_resource type="Texture2D" uid="uid://vtt3avtblb5g" path="res://Assets/bg.png" id="1_b5re5"]
+[ext_resource type="Script" path="res://Scripts/TabOverlayEntry.gd" id="1_f6u72"]
 [ext_resource type="Texture2D" uid="uid://dx0ogf5ly73sf" path="res://icon.png" id="1_p3us2"]
 
 [node name="Control" type="Control"]
@@ -9,6 +10,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 316.0
 offset_bottom = 54.0
+script = ExtResource("1_f6u72")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(158, 27)
@@ -21,7 +23,6 @@ scale = Vector2(0.295, 0.295)
 texture = ExtResource("1_p3us2")
 
 [node name="Label" type="Label" parent="."]
-layout_mode = 0
 offset_left = 58.88
 offset_top = 7.0
 offset_right = 1207.88

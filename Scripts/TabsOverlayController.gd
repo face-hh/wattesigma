@@ -7,14 +7,23 @@ var scroll_speed = 10
 var tween_duration = 0.2
 
 @onready var container: VBoxContainer = $TextureRect/VBoxContainer
+const TABS_OVERLAY_ENTRY = preload("res://Scenes/TabsOverlayEntry.tscn")
+const TEST_TEXTURE = preload("res://icon.png")
 
 func _ready():
+	add_tab("https://ok.com")
+	add_tab("https://ok1.com")
+	add_tab("https://ok2.com")
+	add_tab("https://ok3.com")
+	add_tab("https://ok4.com")
 	if container.get_child_count() > 0: set_initial_state()
 
 func set_initial_state():
+	print("###########")
+	print("Child count at time of initial state func: ", container.get_child_count())
 	for i in range(container.get_child_count()):
 		var child = container.get_child(i)
-
+		print(i == current_index)
 		if i != current_index:
 			child.scale = normal_size
 	
@@ -35,6 +44,9 @@ func _input(event):
 			scroll_elements(1)
 		elif event.button_index == MOUSE_BUTTON_WHEEL_UP:
 			scroll_elements(-1)
+	# # ==== SHORTCUTS ====
+	if Input.is_action_just_pressed("tab_close"):
+		close_tab()
 
 func scroll_elements(direction):
 	var previous_index = current_index
@@ -68,3 +80,26 @@ func update_active_element(previous_index):
 	tween.parallel().tween_property(current_child, "scale", active_size, tween_duration).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tween.parallel().tween_property($TextureRect/VBoxContainer, "position:y", -scroll_target, tween_duration).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tween.parallel().tween_method(func(val): gradient.set_offset(1, val), gradient.get_offset(1), fade_focus, tween_duration).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+
+func add_tab(url):
+	var node = TABS_OVERLAY_ENTRY.instantiate()
+	container.add_child(node)
+	node.change_to(TEST_TEXTURE, url)
+
+func close_tab():
+	var child_count = container.get_child_count()
+	
+	if child_count == 0: return
+	
+	var tab = container.get_child(current_index);
+	
+	tab.queue_free()
+	await tab.tree_exited
+	
+	if child_count == 1:
+		current_index = -1
+	elif current_index == child_count - 1:
+		current_index = child_count - 2
+	print("Child count at time of initial state: ", container.get_child_count())
+	if current_index >= 0:
+		set_initial_state()

@@ -1,6 +1,5 @@
-[gd_scene load_steps=5 format=3 uid="uid://scu3pvp6we0w"]
+[gd_scene load_steps=4 format=3 uid="uid://scu3pvp6we0w"]
 
-[ext_resource type="PackedScene" uid="uid://ky7xg6vuuc3i" path="res://Scenes/TabsOverlayEntry.tscn" id="1_bcqd5"]
 [ext_resource type="Script" path="res://Scripts/TabsOverlayController.gd" id="1_tg2da"]
 
 [sub_resource type="Gradient" id="Gradient_2gpbi"]
@@ -33,69 +32,3 @@ offset_bottom = 1329.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 35
-
-[node name="Tab" parent="TextureRect/VBoxContainer" instance=ExtResource("1_bcqd5")]
-layout_mode = 2
-
-[node name="Tab2" parent="TextureRect/VBoxContainer" instance=ExtResource("1_bcqd5")]
-layout_mode = 2
-
-[node name="Tab3" parent="TextureRect/VBoxContainer" instance=ExtResource("1_bcqd5")]
-layout_mode = 2
-
-[node name="Tab4" parent="TextureRect/VBoxContainer" instance=ExtResource("1_bcqd5")]
-layout_mode = 2
-
-[node name="Tab5" parent="TextureRect/VBoxContainer" instance=ExtResource("1_bcqd5")]
-layout_mode = 2
-
-[node name="Tab6" parent="TextureRect/VBoxContainer" instance=ExtResource("1_bcqd5")]
-layout_mode = 2
-
-[node name="Tab7" parent="TextureRect/VBoxContainer" instance=ExtResource("1_bcqd5")]
-layout_mode = 2
-
-[node name="Tab8" parent="TextureRect/VBoxContainer" instance=ExtResource("1_bcqd5")]
-layout_mode = 2
-
-[node name="Tab9" parent="TextureRect/VBoxContainer" instance=ExtResource("1_bcqd5")]
-layout_mode = 2
-
-[node name="Tab10" parent="TextureRect/VBoxContainer" instance=ExtResource("1_bcqd5")]
-layout_mode = 2
-
-[node name="Tab11" parent="TextureRect/VBoxContainer" instance=ExtResource("1_bcqd5")]
-layout_mode = 2
-
-[node name="Tab12" parent="TextureRect/VBoxContainer" instance=ExtResource("1_bcqd5")]
-layout_mode = 2
-
-[node name="Tab13" parent="TextureRect/VBoxContainer" instance=ExtResource("1_bcqd5")]
-layout_mode = 2
-
-[node name="Tab14" parent="TextureRect/VBoxContainer" instance=ExtResource("1_bcqd5")]
-layout_mode = 2
-
-[node name="Tab15" parent="TextureRect/VBoxContainer" instance=ExtResource("1_bcqd5")]
-layout_mode = 2
-
-[node name="Tab16" parent="TextureRect/VBoxContainer" instance=ExtResource("1_bcqd5")]
-layout_mode = 2
-
-[node name="Tab17" parent="TextureRect/VBoxContainer" instance=ExtResource("1_bcqd5")]
-layout_mode = 2
-
-[node name="Tab18" parent="TextureRect/VBoxContainer" instance=ExtResource("1_bcqd5")]
-layout_mode = 2
-
-[node name="Tab19" parent="TextureRect/VBoxContainer" instance=ExtResource("1_bcqd5")]
-layout_mode = 2
-
-[node name="Tab20" parent="TextureRect/VBoxContainer" instance=ExtResource("1_bcqd5")]
-layout_mode = 2
-
-[node name="Tab21" parent="TextureRect/VBoxContainer" instance=ExtResource("1_bcqd5")]
-layout_mode = 2
-
-[node name="Tab22" parent="TextureRect/VBoxContainer" instance=ExtResource("1_bcqd5")]
-layout_mode = 2
