@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ky7xg6vuuc3i"]
 
-[ext_resource type="Texture2D" uid="uid://vtt3avtblb5g" path="res://Scenes/bg.png" id="1_b5re5"]
+[ext_resource type="Texture2D" uid="uid://vtt3avtblb5g" path="res://Assets/bg.png" id="1_b5re5"]
 [ext_resource type="Texture2D" uid="uid://dx0ogf5ly73sf" path="res://icon.png" id="1_p3us2"]
 
 [node name="Control" type="Control"]

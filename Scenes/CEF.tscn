@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://cg0dpkfqho8xs"]
+[gd_scene load_steps=6 format=3 uid="uid://cg0dpkfqho8xs"]
 
-[ext_resource type="Script" path="res://CEF.gd" id="1"]
-[ext_resource type="Script" path="res://Scripts/control_defocus.gd" id="2_stpgv"]
+[ext_resource type="Script" path="res://Scripts/CEF.gd" id="1_j4gvw"]
+[ext_resource type="Shader" path="res://Shaders/Blur.gdshader" id="2_qqkxj"]
+[ext_resource type="Script" path="res://Scripts/ControlDefocus.gd" id="2_xatmj"]
+[ext_resource type="PackedScene" uid="uid://scu3pvp6we0w" path="res://Scenes/TabsOverlay.tscn" id="3_fpfdj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gxtfe"]
+shader = ExtResource("2_qqkxj")
+shader_parameter/exclude_center = null
+shader_parameter/exclude_size = null
+shader_parameter/lod = 1.5
 
 [node name="GUI" type="Control"]
 layout_mode = 3
@@ -11,7 +19,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-script = ExtResource("1")
+script = ExtResource("1_j4gvw")
 
 [node name="CEF" type="GDCef" parent="."]
 
@@ -36,61 +44,61 @@ layout_mode = 2
 layout_mode = 2
 tooltip_text = "New empty document"
 text = "New"
-script = ExtResource("2_stpgv")
+script = ExtResource("2_xatmj")
 
 [node name="Home" type="Button" parent="Panel/VBox/HBox"]
 layout_mode = 2
 tooltip_text = "Go to home page"
 text = "Home"
-script = ExtResource("2_stpgv")
+script = ExtResource("2_xatmj")
 
 [node name="URL" type="Label" parent="Panel/VBox/HBox"]
 layout_mode = 2
 mouse_filter = 0
 text = "URL:"
-script = ExtResource("2_stpgv")
+script = ExtResource("2_xatmj")
 
 [node name="TextEdit" type="LineEdit" parent="Panel/VBox/HBox" groups=["gui_input"]]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 tooltip_text = "Type your desired URl and then click on the go button"
-script = ExtResource("2_stpgv")
+script = ExtResource("2_xatmj")
 
 [node name="Go" type="Button" parent="Panel/VBox/HBox"]
 layout_mode = 2
 tooltip_text = "Load a page given its URL"
 text = "Go"
-script = ExtResource("2_stpgv")
+script = ExtResource("2_xatmj")
 
 [node name="Refresh" type="Button" parent="Panel/VBox/HBox"]
 layout_mode = 2
 tooltip_text = "Reload the page"
 text = "Refresh"
-script = ExtResource("2_stpgv")
+script = ExtResource("2_xatmj")
 
 [node name="Prev" type="Button" parent="Panel/VBox/HBox"]
 layout_mode = 2
 tooltip_text = "Go to previous page"
 text = "<"
-script = ExtResource("2_stpgv")
+script = ExtResource("2_xatmj")
 
 [node name="Next" type="Button" parent="Panel/VBox/HBox"]
 layout_mode = 2
 tooltip_text = "Go to next page"
 text = ">"
-script = ExtResource("2_stpgv")
+script = ExtResource("2_xatmj")
 
 [node name="TabBar" type="Label" parent="Panel/VBox/HBox"]
 layout_mode = 2
 mouse_filter = 0
 text = "Opened:"
-script = ExtResource("2_stpgv")
+script = ExtResource("2_xatmj")
 
 [node name="BrowserList" type="OptionButton" parent="Panel/VBox/HBox"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 tooltip_text = "Select opened pages"
-script = ExtResource("2_stpgv")
+script = ExtResource("2_xatmj")
 
 [node name="TextureRect" type="TextureRect" parent="Panel/VBox"]
 layout_mode = 2
@@ -126,6 +134,25 @@ mouse_filter = 0
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
 [node name="AcceptDialog" type="AcceptDialog" parent="."]
+
+[node name="BlurOverlay" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_gxtfe")
+layout_mode = 0
+offset_right = 1148.0
+offset_bottom = 654.0
+
+[node name="ColorOverlay" type="ColorRect" parent="BlurOverlay"]
+layout_mode = 0
+offset_right = 1156.0
+offset_bottom = 654.0
+color = Color(0, 0, 0, 0.498039)
+
+[node name="TabsOverlay" parent="." instance=ExtResource("3_fpfdj")]
+visible = false
+layout_mode = 0
+offset_right = 1169.0
+offset_bottom = 653.0
 
 [connection signal="pressed" from="Panel/VBox/HBox/New" to="." method="_on_Add_pressed"]
 [connection signal="pressed" from="Panel/VBox/HBox/Home" to="." method="_on_Home_pressed"]

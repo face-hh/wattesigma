@@ -310,7 +310,8 @@ func _on_texture_rect_resized():
 	if current_browser == null:
 		return
 	current_browser.resize($Panel/VBox/TextureRect.get_size())
-	pass
+	$BlurOverlay.size = $Panel.get_size()
+	$BlurOverlay/ColorOverlay.size = $Panel.get_size()
 
 ####
 #### Godot

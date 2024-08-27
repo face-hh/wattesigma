@@ -19,6 +19,8 @@ func set_initial_state():
 	update_active_element(-1)
 
 func _input(event):
+	if !$"../..".visible: return
+	
 	# ==== KEYBOARD ====
 	if event is InputEventKey and event.pressed:
 		if event.keycode == KEY_DOWN:
