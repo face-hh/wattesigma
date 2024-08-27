@@ -280,17 +280,28 @@ func _on_TextureRect_gui_input(event):
 func _input(event):
 	if current_browser == null:
 		return
+	
+	for node in get_tree().get_nodes_in_group("gui_input"):
+		if node.has_focus():
+			return
+	
 	if event is InputEventKey:
-		if event.is_command_or_control_pressed() && event.pressed && not event.echo:
+		var key_code = OS.get_keycode_string(event.keycode)
+		var is_text = event.unicode != 0 and key_code.length() == 1
+		
+		if event.is_command_or_control_pressed() and event.pressed and not event.echo:
 			if event.keycode == KEY_S:
 				# Will call the callback 'on_html_content_requested'
 				current_browser.request_html_content()
-		else:
-			current_browser.set_key_pressed(
-				event.unicode if event.unicode != 0 else event.keycode,
-				event.pressed, event.shift_pressed, event.alt_pressed,
-				event.is_command_or_control_pressed())
-	pass
+		
+		# Pass all key events, including CTRL, arrow keys, etc.
+		current_browser.set_key_pressed(
+			event.unicode if is_text else event.keycode,
+			event.pressed,
+			event.shift_pressed,
+			event.alt_pressed,
+			event.is_command_or_control_pressed()
+		)
 
 # ==============================================================================
 # Windows has resized

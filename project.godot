@@ -11,9 +11,15 @@ config_version=5
 [application]
 
 config/name="CEF in 2D"
-run/main_scene="res://CEF.tscn"
+run/main_scene="res://Scenes/TabsOverlay.tscn"
 config/features=PackedStringArray("4.2")
 config/icon="res://icon.png"
+
+[file_customization]
+
+folder_colors={
+"res://Scripts/": "yellow"
+}
 
 [physics]
 

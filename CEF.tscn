@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cg0dpkfqho8xs"]
+[gd_scene load_steps=3 format=3 uid="uid://cg0dpkfqho8xs"]
 
 [ext_resource type="Script" path="res://CEF.gd" id="1"]
+[ext_resource type="Script" path="res://Scripts/control_defocus.gd" id="2_stpgv"]
 
 [node name="GUI" type="Control"]
 layout_mode = 3
@@ -35,51 +36,61 @@ layout_mode = 2
 layout_mode = 2
 tooltip_text = "New empty document"
 text = "New"
+script = ExtResource("2_stpgv")
 
 [node name="Home" type="Button" parent="Panel/VBox/HBox"]
 layout_mode = 2
 tooltip_text = "Go to home page"
 text = "Home"
+script = ExtResource("2_stpgv")
 
 [node name="URL" type="Label" parent="Panel/VBox/HBox"]
 layout_mode = 2
 mouse_filter = 0
 text = "URL:"
+script = ExtResource("2_stpgv")
 
-[node name="TextEdit" type="LineEdit" parent="Panel/VBox/HBox"]
+[node name="TextEdit" type="LineEdit" parent="Panel/VBox/HBox" groups=["gui_input"]]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 tooltip_text = "Type your desired URl and then click on the go button"
+script = ExtResource("2_stpgv")
 
 [node name="Go" type="Button" parent="Panel/VBox/HBox"]
 layout_mode = 2
 tooltip_text = "Load a page given its URL"
 text = "Go"
+script = ExtResource("2_stpgv")
 
 [node name="Refresh" type="Button" parent="Panel/VBox/HBox"]
 layout_mode = 2
 tooltip_text = "Reload the page"
 text = "Refresh"
+script = ExtResource("2_stpgv")
 
 [node name="Prev" type="Button" parent="Panel/VBox/HBox"]
 layout_mode = 2
 tooltip_text = "Go to previous page"
 text = "<"
+script = ExtResource("2_stpgv")
 
 [node name="Next" type="Button" parent="Panel/VBox/HBox"]
 layout_mode = 2
 tooltip_text = "Go to next page"
 text = ">"
+script = ExtResource("2_stpgv")
 
 [node name="TabBar" type="Label" parent="Panel/VBox/HBox"]
 layout_mode = 2
 mouse_filter = 0
 text = "Opened:"
+script = ExtResource("2_stpgv")
 
 [node name="BrowserList" type="OptionButton" parent="Panel/VBox/HBox"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 tooltip_text = "Select opened pages"
+script = ExtResource("2_stpgv")
 
 [node name="TextureRect" type="TextureRect" parent="Panel/VBox"]
 layout_mode = 2
@@ -121,8 +132,8 @@ mouse_filter = 0
 [connection signal="pressed" from="Panel/VBox/HBox/Go" to="." method="_on_go_pressed"]
 [connection signal="pressed" from="Panel/VBox/HBox/Refresh" to="." method="_on_refresh_pressed"]
 [connection signal="pressed" from="Panel/VBox/HBox/Prev" to="." method="_on_Prev_pressed"]
-[connection signal="pressed" from="Panel/VBox/HBox/Next" to="." method="_on_Next_pressed"]
 [connection signal="pressed" from="Panel/VBox/HBox/Next" to="." method="_on_Prev_pressed"]
+[connection signal="pressed" from="Panel/VBox/HBox/Next" to="." method="_on_Next_pressed"]
 [connection signal="item_selected" from="Panel/VBox/HBox/BrowserList" to="." method="_on_BrowserList_item_selected"]
 [connection signal="gui_input" from="Panel/VBox/TextureRect" to="." method="_on_TextureRect_gui_input"]
 [connection signal="resized" from="Panel/VBox/TextureRect" to="." method="_on_texture_rect_resized"]

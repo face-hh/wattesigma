@@ -1,0 +1,93 @@
+[gd_scene load_steps=5 format=3 uid="uid://scu3pvp6we0w"]
+
+[ext_resource type="PackedScene" uid="uid://ky7xg6vuuc3i" path="res://Scenes/TabsOverlayEntry.tscn" id="1_bcqd5"]
+[ext_resource type="Script" path="res://Scripts/TabsOverlayController.gd" id="1_tg2da"]
+
+[sub_resource type="Gradient" id="Gradient_2gpbi"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 0.037427, 0.0436893, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ddqdy"]
+gradient = SubResource("Gradient_2gpbi")
+width = 59
+fill_to = Vector2(0, 1)
+
+[node name="TextureRect" type="TextureRect"]
+clip_children = 1
+offset_right = 721.0
+offset_bottom = 305.0
+texture = SubResource("GradientTexture2D_ddqdy")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 158.0
+offset_bottom = 1329.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 35
+script = ExtResource("1_tg2da")
+
+[node name="Tab" parent="VBoxContainer" instance=ExtResource("1_bcqd5")]
+layout_mode = 2
+
+[node name="Tab2" parent="VBoxContainer" instance=ExtResource("1_bcqd5")]
+layout_mode = 2
+
+[node name="Tab3" parent="VBoxContainer" instance=ExtResource("1_bcqd5")]
+layout_mode = 2
+
+[node name="Tab4" parent="VBoxContainer" instance=ExtResource("1_bcqd5")]
+layout_mode = 2
+
+[node name="Tab5" parent="VBoxContainer" instance=ExtResource("1_bcqd5")]
+layout_mode = 2
+
+[node name="Tab6" parent="VBoxContainer" instance=ExtResource("1_bcqd5")]
+layout_mode = 2
+
+[node name="Tab7" parent="VBoxContainer" instance=ExtResource("1_bcqd5")]
+layout_mode = 2
+
+[node name="Tab8" parent="VBoxContainer" instance=ExtResource("1_bcqd5")]
+layout_mode = 2
+
+[node name="Tab9" parent="VBoxContainer" instance=ExtResource("1_bcqd5")]
+layout_mode = 2
+
+[node name="Tab10" parent="VBoxContainer" instance=ExtResource("1_bcqd5")]
+layout_mode = 2
+
+[node name="Tab11" parent="VBoxContainer" instance=ExtResource("1_bcqd5")]
+layout_mode = 2
+
+[node name="Tab12" parent="VBoxContainer" instance=ExtResource("1_bcqd5")]
+layout_mode = 2
+
+[node name="Tab13" parent="VBoxContainer" instance=ExtResource("1_bcqd5")]
+layout_mode = 2
+
+[node name="Tab14" parent="VBoxContainer" instance=ExtResource("1_bcqd5")]
+layout_mode = 2
+
+[node name="Tab15" parent="VBoxContainer" instance=ExtResource("1_bcqd5")]
+layout_mode = 2
+
+[node name="Tab16" parent="VBoxContainer" instance=ExtResource("1_bcqd5")]
+layout_mode = 2
+
+[node name="Tab17" parent="VBoxContainer" instance=ExtResource("1_bcqd5")]
+layout_mode = 2
+
+[node name="Tab18" parent="VBoxContainer" instance=ExtResource("1_bcqd5")]
+layout_mode = 2
+
+[node name="Tab19" parent="VBoxContainer" instance=ExtResource("1_bcqd5")]
+layout_mode = 2
+
+[node name="Tab20" parent="VBoxContainer" instance=ExtResource("1_bcqd5")]
+layout_mode = 2
+
+[node name="Tab21" parent="VBoxContainer" instance=ExtResource("1_bcqd5")]
+layout_mode = 2
+
+[node name="Tab22" parent="VBoxContainer" instance=ExtResource("1_bcqd5")]
+layout_mode = 2

@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://ky7xg6vuuc3i"]
+
+[ext_resource type="Texture2D" uid="uid://vtt3avtblb5g" path="res://Scenes/bg.png" id="1_b5re5"]
+[ext_resource type="Texture2D" uid="uid://dx0ogf5ly73sf" path="res://icon.png" id="1_p3us2"]
+
+[node name="Control" type="Control"]
+custom_minimum_size = Vector2(158, 27)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 316.0
+offset_bottom = 54.0
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(158, 27)
+scale = Vector2(0.484568, 0.308642)
+texture = ExtResource("1_b5re5")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(26.88, 27)
+scale = Vector2(0.295, 0.295)
+texture = ExtResource("1_p3us2")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 58.88
+offset_top = 7.0
+offset_right = 1207.88
+offset_bottom = 179.0
+scale = Vector2(0.215, 0.215)
+theme_override_font_sizes/font_size = 126
+text = "https://google.com"
