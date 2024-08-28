@@ -12,8 +12,8 @@ offset_bottom = 54.0
 script = ExtResource("1_f6u72")
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(158, 27)
-scale = Vector2(0.484568, 0.308642)
+position = Vector2(384, 27)
+scale = Vector2(1.1821, 0.308642)
 texture = ExtResource("1_b5re5")
 
 [node name="Icon" type="Sprite2D" parent="."]
@@ -22,10 +22,11 @@ scale = Vector2(1.965, 1.965)
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 58.88
+offset_left = 59.0
 offset_top = 7.0
-offset_right = 1207.88
+offset_right = 3287.0
 offset_bottom = 179.0
 scale = Vector2(0.215, 0.215)
 theme_override_font_sizes/font_size = 126
-text = "https://google.com"
+text = "https://google.com — școală"
+text_overrun_behavior = 3

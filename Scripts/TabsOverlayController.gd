@@ -39,6 +39,7 @@ func _input(event):
 	# # ==== SHORTCUTS ====
 	if Input.is_action_just_pressed("tab_close"):
 		close_tab()
+		$/root/GUI.remove_browser(str(current_index + 1))
 
 func scroll_elements(direction):
 	var previous_index = current_index
@@ -72,6 +73,8 @@ func update_active_element(previous_index):
 	tween.parallel().tween_property(current_child, "scale", active_size, tween_duration).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tween.parallel().tween_property($TextureRect/VBoxContainer, "position:y", -scroll_target, tween_duration).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tween.parallel().tween_method(func(val): gradient.set_offset(1, val), gradient.get_offset(1), fade_focus, tween_duration).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	
+	$/root/GUI.switch_tab(current_index)
 
 func add_tab(url):
 	var node = TABS_OVERLAY_ENTRY.instantiate()
@@ -80,14 +83,28 @@ func add_tab(url):
 	container.add_child(node)
 	
 	var title = await $/root/GUI.current_browser.get_title()
-	node.change_to(favicon if favicon else DEFAULT_TEXTURES, title if favicon else "New Tab")
+	node.change_to(favicon if favicon else DEFAULT_TEXTURES, title if title else "New Tab", url)
+
+func update_tab(url):
+	var node = container.get_child(current_index)
+	if !node:
+		return
+	if node.url == url:
+		return
+	
+	var favicon = await Utils.fetch_favicon(url)
+	
+	var title = await $/root/GUI.current_browser.get_title()
+	print(title)
+	node.change_to(favicon if favicon else DEFAULT_TEXTURES, title if title else "New Tab", url)
 
 func close_tab():
 	var child_count = container.get_child_count()
 	
-	if child_count == 0: return
+	if child_count == 0:
+		return
 	
-	var tab = container.get_child(current_index);
+	var tab = container.get_child(current_index)
 	
 	tab.queue_free()
 	await tab.tree_exited
@@ -96,6 +113,6 @@ func close_tab():
 		current_index = -1
 	elif current_index == child_count - 1:
 		current_index = child_count - 2
-
+	
 	if current_index >= 0:
 		set_initial_state()

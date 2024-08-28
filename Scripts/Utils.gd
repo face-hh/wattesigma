@@ -2,7 +2,6 @@ extends Node
 
 var google_url = "https://s2.googleusercontent.com/s2/favicons?domain_url={{DOMAIN}}"
 
-
 func fetch_favicon(domain: String) -> ImageTexture:
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
@@ -20,7 +19,7 @@ func fetch_favicon(domain: String) -> ImageTexture:
 	var body = result[3]
 	
 	if response_code != 200:
-		push_error("Failed to fetch favicon. HTTP response code: " + str(response_code))
+		push_warning("Failed to fetch favicon. Attempted fetch at: "+ url + "HTTP response code: " + str(response_code))
 		return null
 	
 	var image = Image.new()

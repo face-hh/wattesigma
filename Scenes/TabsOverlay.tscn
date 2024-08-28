@@ -21,7 +21,7 @@ script = ExtResource("1_tg2da")
 [node name="TextureRect" type="TextureRect" parent="."]
 clip_children = 1
 layout_mode = 0
-offset_right = 721.0
+offset_right = 1153.0
 offset_bottom = 305.0
 texture = SubResource("GradientTexture2D_ddqdy")
 

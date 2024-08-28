@@ -94,12 +94,6 @@ mouse_filter = 0
 text = "Opened:"
 script = ExtResource("2_xatmj")
 
-[node name="BrowserList" type="OptionButton" parent="Panel/VBox/HBox"]
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-tooltip_text = "Select opened pages"
-script = ExtResource("2_xatmj")
-
 [node name="TextureRect" type="TextureRect" parent="Panel/VBox"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -161,7 +155,6 @@ offset_bottom = 653.0
 [connection signal="pressed" from="Panel/VBox/HBox/Prev" to="." method="_on_Prev_pressed"]
 [connection signal="pressed" from="Panel/VBox/HBox/Next" to="." method="_on_Prev_pressed"]
 [connection signal="pressed" from="Panel/VBox/HBox/Next" to="." method="_on_Next_pressed"]
-[connection signal="item_selected" from="Panel/VBox/HBox/BrowserList" to="." method="_on_BrowserList_item_selected"]
 [connection signal="gui_input" from="Panel/VBox/TextureRect" to="." method="_on_TextureRect_gui_input"]
 [connection signal="resized" from="Panel/VBox/TextureRect" to="." method="_on_texture_rect_resized"]
 [connection signal="pressed" from="Panel/VBox/HBox2/RoutingAudio" to="." method="_on_routing_audio_pressed"]

@@ -12,6 +12,7 @@ var browsers = {}
 var current_browser = null
 # Counter for generating unique browser IDs
 var browser_id_counter = 0
+var ignore_new_urls = false;
 
 # Memorize if the mouse was pressed
 @onready var mouse_pressed : bool = false
@@ -48,11 +49,16 @@ func _on_saving_page(html, browser):
 # Callback when a page has ended to load with success (200): we print a message
 # ==============================================================================
 func _on_page_loaded(browser):
-	var L = $Panel/VBox/HBox/BrowserList
+	#var L = $Panel/VBox/HBox/BrowserList
 	var url = browser.get_url()
-	L.set_item_text(L.get_selected_id(), url)
+# TODO
+#	L.set_item_text(L.get_selected_id(), url)
 	$Panel/VBox/HBox2/Info.set_text(url + " loaded as ID " + browser.name)
-	print("Browser named '" + browser.name + "' inserted on list at index " + str(L.get_selected_id()) + ": " + url)
+	if !ignore_new_urls:
+		tabs_overlay.update_tab(url)
+	else:
+		ignore_new_urls = false
+	#print("Browser named '" + browser.name + "' inserted on list at index " + str(L.get_selected_id()) + ": " + url)
 
 # ==============================================================================
 # Callback when a page has ended to load with failure.
@@ -77,6 +83,7 @@ func generate_browser_id():
 # Create a new browser and return it or return null if failed.
 # ==============================================================================
 func create_browser(url):
+	ignore_new_urls = true
 	# Wait one frame for the texture rect to get its size
 	await get_tree().process_frame
 
@@ -95,15 +102,10 @@ func create_browser(url):
 	browser.connect("on_html_content_requested", _on_saving_page)
 	browser.connect("on_page_loaded", _on_page_loaded)
 	browser.connect("on_page_failed_loading", _on_page_failed_loading)
-
-	# Add the URL to the list
-	var index = $Panel/VBox/HBox/BrowserList.get_item_count()
-	$Panel/VBox/HBox/BrowserList.add_item(url)
-	$Panel/VBox/HBox/BrowserList.set_item_metadata(index, browser_id)
-	$Panel/VBox/HBox/BrowserList.select(index)
 	
 	print("Browser with ID '" + browser_id + "' created with URL " + url)
 	tabs_overlay.add_tab(url)
+
 	return browser
 
 # ==============================================================================
@@ -125,21 +127,18 @@ func get_browser(browser_id):
 # ==============================================================================
 # Remove a browser from the list and close it
 # ==============================================================================
-func remove_browser(browser_id):
+func remove_browser(browser_id: String):
+	print(browser_id, browsers)
 	if browsers.has(browser_id):
 		var browser = browsers[browser_id]
 		browser.close()
 		browsers.erase(browser_id)
 		
-		# Remove from the BrowserList
-		for i in range($Panel/VBox/HBox/BrowserList.get_item_count()):
-			if $Panel/VBox/HBox/BrowserList.get_item_metadata(i) == browser_id:
-				$Panel/VBox/HBox/BrowserList.remove_item(i)
-				break
-		
-		# If we removed the current browser, set it to null
 		if current_browser == browser:
 			current_browser = null
+
+		if browsers.size() == 0:
+			get_tree().quit()
 
 ####
 #### Top menu
@@ -208,18 +207,15 @@ func _on_Next_pressed():
 # ==============================================================================
 # Select the new desired browser from the list of tabs.
 # ==============================================================================
-func _on_BrowserList_item_selected(index):
-	var browser_id = $Panel/VBox/HBox/BrowserList.get_item_metadata(index)
-	if browser_id != null:
-		current_browser = get_browser(browser_id)
-		if current_browser != null:
-			$Panel/VBox/TextureRect.texture = current_browser.get_texture()
-			current_browser.resize($Panel/VBox/TextureRect.get_size())
-		else:
-			$Panel/VBox/HBox2/Info.set_text("Failed to get browser with ID '" + str(browser_id) + "'")
-	else:
-		$Panel/VBox/HBox2/Info.set_text("No browser ID associated with this item")
-	pass
+func switch_tab(index: int):
+	var new_browser = get_browser(str(index + 1))
+	
+	if current_browser == new_browser: return
+	
+	current_browser = new_browser
+	
+	$Panel/VBox/TextureRect.texture = current_browser.get_texture()
+	current_browser.resize($Panel/VBox/TextureRect.get_size())
 
 ####
 #### Bottom menu
