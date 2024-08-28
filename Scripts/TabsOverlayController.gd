@@ -8,22 +8,14 @@ var tween_duration = 0.2
 
 @onready var container: VBoxContainer = $TextureRect/VBoxContainer
 const TABS_OVERLAY_ENTRY = preload("res://Scenes/TabsOverlayEntry.tscn")
-const TEST_TEXTURE = preload("res://icon.png")
+const DEFAULT_TEXTURES = preload("res://icon.png")
 
 func _ready():
-	add_tab("https://ok.com")
-	add_tab("https://ok1.com")
-	add_tab("https://ok2.com")
-	add_tab("https://ok3.com")
-	add_tab("https://ok4.com")
 	if container.get_child_count() > 0: set_initial_state()
 
 func set_initial_state():
-	print("###########")
-	print("Child count at time of initial state func: ", container.get_child_count())
 	for i in range(container.get_child_count()):
 		var child = container.get_child(i)
-		print(i == current_index)
 		if i != current_index:
 			child.scale = normal_size
 	
@@ -83,8 +75,12 @@ func update_active_element(previous_index):
 
 func add_tab(url):
 	var node = TABS_OVERLAY_ENTRY.instantiate()
+	var favicon = await Utils.fetch_favicon(url)
+	
 	container.add_child(node)
-	node.change_to(TEST_TEXTURE, url)
+	
+	var title = await $/root/GUI.current_browser.get_title()
+	node.change_to(favicon if favicon else DEFAULT_TEXTURES, title)
 
 func close_tab():
 	var child_count = container.get_child_count()
@@ -100,6 +96,6 @@ func close_tab():
 		current_index = -1
 	elif current_index == child_count - 1:
 		current_index = child_count - 2
-	print("Child count at time of initial state: ", container.get_child_count())
+
 	if current_index >= 0:
 		set_initial_state()

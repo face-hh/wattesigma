@@ -18,6 +18,7 @@ config/icon="res://icon.png"
 [autoload]
 
 ControlsSingleton="*res://Scripts/ControlsSingleton.gd"
+Utils="*res://Scripts/Utils.gd"
 
 [file_customization]
 

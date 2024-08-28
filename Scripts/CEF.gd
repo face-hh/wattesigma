@@ -15,6 +15,7 @@ var browser_id_counter = 0
 
 # Memorize if the mouse was pressed
 @onready var mouse_pressed : bool = false
+@onready var tabs_overlay = $TabsOverlay
 
 # ==============================================================================
 # Create the home page.
@@ -52,7 +53,6 @@ func _on_page_loaded(browser):
 	L.set_item_text(L.get_selected_id(), url)
 	$Panel/VBox/HBox2/Info.set_text(url + " loaded as ID " + browser.name)
 	print("Browser named '" + browser.name + "' inserted on list at index " + str(L.get_selected_id()) + ": " + url)
-	pass
 
 # ==============================================================================
 # Callback when a page has ended to load with failure.
@@ -103,6 +103,7 @@ func create_browser(url):
 	$Panel/VBox/HBox/BrowserList.select(index)
 	
 	print("Browser with ID '" + browser_id + "' created with URL " + url)
+	tabs_overlay.add_tab(url)
 	return browser
 
 # ==============================================================================
