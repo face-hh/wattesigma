@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bum4nuxpwhys6"
-path="res://.godot/imported/faviconV2.png-71224117fd009889d8564d83daa3d695.ctex"
+uid="uid://8mmbro66lf57"
+path="res://.godot/imported/default_tab.png-4ced9762813f4e8362053cded8b318a2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scripts/faviconV2.png"
-dest_files=["res://.godot/imported/faviconV2.png-71224117fd009889d8564d83daa3d695.ctex"]
+source_file="res://default_tab.png"
+dest_files=["res://.godot/imported/default_tab.png-4ced9762813f4e8362053cded8b318a2.ctex"]
 
 [params]
 

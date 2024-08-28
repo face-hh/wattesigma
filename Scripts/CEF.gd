@@ -22,7 +22,7 @@ var browser_id_counter = 0
 # ==============================================================================
 func create_default_page():
 	var file = FileAccess.open(DEFAULT_PAGE, FileAccess.WRITE)
-	file.store_string("<html><body bgcolor=\"white\"><h2>Welcome to gdCEF !</h2><p>This a generated page.</p></body></html>")
+	file.store_string("<html><head><title>New Tab</title></head><body bgcolor=\"white\"><h2>Welcome to gdCEF !</h2><p>This a generated page.</p></body></html>")
 	file.close()
 	pass
 
@@ -281,6 +281,7 @@ func _on_TextureRect_gui_input(event):
 func _input(event):
 	if current_browser == null:
 		return
+	if tabs_overlay.visible: return
 	
 	for node in get_tree().get_nodes_in_group("gui_input"):
 		if node.has_focus():
@@ -335,13 +336,6 @@ func _ready():
 
 	# Wait one frame for the texture rect to get its size
 	current_browser = await create_browser(HOME_PAGE)
-	pass
-
-# ==============================================================================
-# CEF is periodically updated
-# ==============================================================================
-func _process(_delta):
-	pass
 
 # ==============================================================================
 # CEF audio will be routed to this Godot stream object.
@@ -365,7 +359,6 @@ func _on_routing_audio_pressed():
 	# shall click on the html halt button and click on the html button. To avoid
 	# this, we reload the page.
 	current_browser.reload()
-	pass
 
 # Add a function to get all browser IDs:
 func get_all_browser_ids():

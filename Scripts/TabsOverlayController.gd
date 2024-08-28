@@ -8,7 +8,7 @@ var tween_duration = 0.2
 
 @onready var container: VBoxContainer = $TextureRect/VBoxContainer
 const TABS_OVERLAY_ENTRY = preload("res://Scenes/TabsOverlayEntry.tscn")
-const DEFAULT_TEXTURES = preload("res://icon.png")
+const DEFAULT_TEXTURES = preload("res://default_tab.png")
 
 func _ready():
 	if container.get_child_count() > 0: set_initial_state()
@@ -80,7 +80,7 @@ func add_tab(url):
 	container.add_child(node)
 	
 	var title = await $/root/GUI.current_browser.get_title()
-	node.change_to(favicon if favicon else DEFAULT_TEXTURES, title)
+	node.change_to(favicon if favicon else DEFAULT_TEXTURES, title if favicon else "New Tab")
 
 func close_tab():
 	var child_count = container.get_child_count()
