@@ -1,15 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://cg0dpkfqho8xs"]
+[gd_scene load_steps=8 format=3 uid="uid://cg0dpkfqho8xs"]
 
 [ext_resource type="Script" path="res://Scripts/CEF.gd" id="1_j4gvw"]
 [ext_resource type="Shader" path="res://Shaders/Blur.gdshader" id="2_qqkxj"]
 [ext_resource type="Script" path="res://Scripts/ControlDefocus.gd" id="2_xatmj"]
 [ext_resource type="PackedScene" uid="uid://scu3pvp6we0w" path="res://Scenes/TabsOverlay.tscn" id="3_fpfdj"]
+[ext_resource type="PackedScene" uid="uid://bqc4y2g8862jh" path="res://Scenes/SearchBar.tscn" id="5_i6ar6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gxtfe"]
 shader = ExtResource("2_qqkxj")
 shader_parameter/exclude_center = null
 shader_parameter/exclude_size = null
 shader_parameter/lod = 1.5
+
+[sub_resource type="Environment" id="Environment_uw372"]
+background_mode = 3
+glow_enabled = true
+glow_strength = 0.49
+glow_blend_mode = 1
 
 [node name="GUI" type="Control"]
 layout_mode = 3
@@ -148,13 +155,23 @@ layout_mode = 0
 offset_right = 1169.0
 offset_bottom = 653.0
 
+[node name="SearchBar" parent="." instance=ExtResource("5_i6ar6")]
+visible = false
+offset_left = 337.0
+offset_top = 271.0
+offset_right = 840.0
+offset_bottom = 340.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_uw372")
+
 [connection signal="pressed" from="Panel/VBox/HBox/New" to="." method="_on_Add_pressed"]
 [connection signal="pressed" from="Panel/VBox/HBox/Home" to="." method="_on_Home_pressed"]
 [connection signal="pressed" from="Panel/VBox/HBox/Go" to="." method="_on_go_pressed"]
 [connection signal="pressed" from="Panel/VBox/HBox/Refresh" to="." method="_on_refresh_pressed"]
 [connection signal="pressed" from="Panel/VBox/HBox/Prev" to="." method="_on_Prev_pressed"]
-[connection signal="pressed" from="Panel/VBox/HBox/Next" to="." method="_on_Prev_pressed"]
 [connection signal="pressed" from="Panel/VBox/HBox/Next" to="." method="_on_Next_pressed"]
+[connection signal="pressed" from="Panel/VBox/HBox/Next" to="." method="_on_Prev_pressed"]
 [connection signal="gui_input" from="Panel/VBox/TextureRect" to="." method="_on_TextureRect_gui_input"]
 [connection signal="resized" from="Panel/VBox/TextureRect" to="." method="_on_texture_rect_resized"]
 [connection signal="pressed" from="Panel/VBox/HBox2/RoutingAudio" to="." method="_on_routing_audio_pressed"]

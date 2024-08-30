@@ -128,7 +128,6 @@ func get_browser(browser_id):
 # Remove a browser from the list and close it
 # ==============================================================================
 func remove_browser(browser_id: String):
-	print(browser_id, browsers)
 	if browsers.has(browser_id):
 		var browser = browsers[browser_id]
 		browser.close()
@@ -308,8 +307,17 @@ func _on_texture_rect_resized():
 	if current_browser == null:
 		return
 	current_browser.resize($Panel/VBox/TextureRect.get_size())
-	$BlurOverlay.size = $Panel.get_size()
-	$BlurOverlay/ColorOverlay.size = $Panel.get_size()
+	
+	var panel_size = $Panel.get_size()
+	
+	$BlurOverlay.size = panel_size
+	$BlurOverlay/ColorOverlay.size = panel_size
+	
+	var search_bar = $SearchBar
+	var search_bar_size = search_bar.get_size()
+	
+	search_bar.position.x = (panel_size.x - search_bar_size.x) / 2
+	search_bar.position.y = (panel_size.y - search_bar_size.y) / 2
 
 ####
 #### Godot

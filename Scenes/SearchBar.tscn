@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqc4y2g8862jh"]
+
+[ext_resource type="Script" path="res://Scripts/SearchBar.gd" id="1_qomkm"]
+[ext_resource type="Texture2D" uid="uid://bpvqnk47p66ls" path="res://Assets/background.png" id="2_k476r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7c5eb"]
+
+[sub_resource type="Environment" id="Environment_7erpx"]
+background_mode = 3
+glow_enabled = true
+glow_strength = 0.49
+glow_blend_mode = 1
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 503.0
+offset_bottom = 69.0
+script = ExtResource("1_qomkm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(247.75, 30)
+scale = Vector2(0.627921, 0.625)
+texture = ExtResource("2_k476r")
+
+[node name="TextEdit" type="TextEdit" parent="." groups=["gui_input"]]
+material = SubResource("ShaderMaterial_7c5eb")
+offset_right = 496.0
+offset_bottom = 65.0
+theme_override_colors/background_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 10
+theme_override_font_sizes/font_size = 26
+placeholder_text = "Search..."
+caret_blink = true
+caret_blink_interval = 0.5
+caret_mid_grapheme = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7erpx")
+
+[connection signal="gui_input" from="TextEdit" to="." method="_on_text_edit_gui_input"]

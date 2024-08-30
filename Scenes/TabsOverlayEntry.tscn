@@ -1,6 +1,5 @@
-[gd_scene load_steps=3 format=3 uid="uid://ky7xg6vuuc3i"]
+[gd_scene load_steps=2 format=3 uid="uid://ky7xg6vuuc3i"]
 
-[ext_resource type="Texture2D" uid="uid://vtt3avtblb5g" path="res://Assets/bg.png" id="1_b5re5"]
 [ext_resource type="Script" path="res://Scripts/TabOverlayEntry.gd" id="1_f6u72"]
 
 [node name="Control" type="Control"]
@@ -11,10 +10,11 @@ offset_right = 316.0
 offset_bottom = 54.0
 script = ExtResource("1_f6u72")
 
-[node name="Background" type="Sprite2D" parent="."]
-position = Vector2(384, 27)
-scale = Vector2(1.1821, 0.308642)
-texture = ExtResource("1_b5re5")
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 767.0
+offset_bottom = 52.0
+color = Color(0, 0, 0, 1)
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(32, 27)
@@ -28,5 +28,5 @@ offset_right = 3287.0
 offset_bottom = 179.0
 scale = Vector2(0.215, 0.215)
 theme_override_font_sizes/font_size = 126
-text = "https://google.com — școală"
+text = "https://google.com"
 text_overrun_behavior = 3
