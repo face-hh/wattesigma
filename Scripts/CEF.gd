@@ -11,6 +11,10 @@ var current_browser = null
 var browser_id_counter = 0
 var ignore_new_urls = false;
 
+var failed_loading_count = 0
+var last_failed_loading_time = 0
+var is_loading_blocked = false
+
 @onready var mouse_pressed : bool = false
 @onready var tabs_overlay = $TabsOverlay
 
@@ -44,6 +48,30 @@ func _on_page_loaded(browser):
 		ignore_new_urls = false
 
 func _on_page_failed_loading(aborted, msg_err, node):
+	var current_time = Time.get_ticks_msec()
+	
+	if current_time - last_failed_loading_time <= 1000:
+		failed_loading_count += 1
+	else:
+		failed_loading_count = 1
+	
+	last_failed_loading_time = current_time
+	
+	if failed_loading_count >= 3 and !is_loading_blocked:
+		is_loading_blocked = true
+		print("Too many failed loading attempts. Loading Google.com...")
+		node.load_url(HOME_PAGE)
+		
+		# Reset the block after a short delay
+		await get_tree().create_timer(2.0).timeout
+		is_loading_blocked = false
+		failed_loading_count = 0
+		return
+	
+	if is_loading_blocked:
+		print("Loading blocked. Ignoring request.")
+		return
+	
 	var html = "<html><body bgcolor=\"white\"><h2>Failed to load URL " + node.get_url()
 	print_debug(msg_err)
 	if aborted:
@@ -51,7 +79,6 @@ func _on_page_failed_loading(aborted, msg_err, node):
 	else:
 		html = html + " with error " + msg_err + "!</h2></body></html>"
 	node.load_data_uri(html, "text/html")
-	pass
 
 func generate_browser_id():
 	browser_id_counter += 1

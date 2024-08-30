@@ -1,9 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://cg0dpkfqho8xs"]
+[gd_scene load_steps=15 format=3 uid="uid://cg0dpkfqho8xs"]
 
 [ext_resource type="Script" path="res://Scripts/CEF.gd" id="1_j4gvw"]
+[ext_resource type="Shader" path="res://Shaders/test.gdshader" id="1_of60d"]
 [ext_resource type="Shader" path="res://Shaders/Blur.gdshader" id="2_qqkxj"]
 [ext_resource type="PackedScene" uid="uid://scu3pvp6we0w" path="res://Scenes/TabsOverlay.tscn" id="3_fpfdj"]
 [ext_resource type="PackedScene" uid="uid://bqc4y2g8862jh" path="res://Scenes/SearchBar.tscn" id="5_i6ar6"]
+[ext_resource type="Shader" path="res://Shaders/test2.gdshader" id="6_6nit7"]
+[ext_resource type="Shader" path="res://Shaders/test3.gdshader" id="7_tdbtu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gxtfe"]
 shader = ExtResource("2_qqkxj")
@@ -16,6 +19,37 @@ background_mode = 3
 glow_enabled = true
 glow_strength = 0.49
 glow_blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_0tigl"]
+colors = PackedColorArray(0.961188, 5.77569e-07, 0.503543, 1, 0, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_aush5"]
+gradient = SubResource("Gradient_0tigl")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ulghg"]
+shader = ExtResource("1_of60d")
+shader_parameter/size_effect = 0.1
+shader_parameter/speed = 2.625
+shader_parameter/highlight_strength = 0.5
+shader_parameter/color_mode_toggle = false
+shader_parameter/is_horizontal = false
+shader_parameter/color_gradient = SubResource("GradientTexture1D_aush5")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_41mvn"]
+shader = ExtResource("6_6nit7")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7khm3"]
+shader = ExtResource("7_tdbtu")
+shader_parameter/crack_depth = 2.236
+shader_parameter/crack_scale = 4.0
+shader_parameter/crack_zebra_scale = 2.67
+shader_parameter/crack_zebra_amp = 1.3
+shader_parameter/crack_profile = 1.0
+shader_parameter/crack_slope = 45.8
+shader_parameter/crack_width = 0.001
+shader_parameter/refraction_offset = Vector2(0, 0)
+shader_parameter/reflection_offset = Vector2(1, 1)
+shader_parameter/reflection_color = Color(0, 0, 0, 1)
 
 [node name="GUI" type="Control"]
 layout_mode = 3
@@ -82,6 +116,27 @@ offset_bottom = 340.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_uw372")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="RandomAssHighlight" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_ulghg")
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 2
+
+[node name="InvertedScreen" type="ColorRect" parent="CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_41mvn")
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_7khm3")
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 2
 
 [connection signal="gui_input" from="Panel/VBox/TextureRect" to="." method="_on_TextureRect_gui_input"]
 [connection signal="resized" from="Panel/VBox/TextureRect" to="." method="_on_texture_rect_resized"]
