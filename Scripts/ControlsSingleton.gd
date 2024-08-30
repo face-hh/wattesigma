@@ -9,7 +9,6 @@ var non_fading_overlays = []
 var active_overlay = null
 
 func _ready():
-	# Add any overlays that shouldn't fade to this list
 	non_fading_overlays.append(search_bar)
 
 func _process(delta):
@@ -17,6 +16,17 @@ func _process(delta):
 		toggle_overlay(tabs_overlay)
 	if Input.is_action_just_pressed("search"):
 		toggle_overlay(search_bar)
+	if Input.is_action_just_pressed("back"):
+		gui.current_browser.previous_page()
+	if Input.is_action_just_pressed("forward"):
+		gui.current_browser.next_page()
+	if Input.is_action_just_pressed("new"):
+		var browser = await gui.create_browser("file://" + ProjectSettings.globalize_path(gui.DEFAULT_PAGE))
+		gui.current_browser = browser
+	if Input.is_action_just_pressed("home"):
+		gui.current_browser.load_url(gui.HOME_PAGE)
+	if Input.is_action_just_pressed("refresh"):
+		gui.current_browser.reload()
 
 func toggle_overlay(new_overlay):
 	var tween = create_tween()

@@ -6,30 +6,20 @@ const SAVED_PAGE = "user://saved_page.html"
 const HOME_PAGE = "https://google.com"
 const RADIO_PAGE = "http://streaming.radio.co/s9378c22ee/listen"
 
-# Dictionary to store all browser instances
 var browsers = {}
-# The current active browser
 var current_browser = null
-# Counter for generating unique browser IDs
 var browser_id_counter = 0
 var ignore_new_urls = false;
 
-# Memorize if the mouse was pressed
 @onready var mouse_pressed : bool = false
 @onready var tabs_overlay = $TabsOverlay
 
-# ==============================================================================
-# Create the home page.
-# ==============================================================================
 func create_default_page():
 	var file = FileAccess.open(DEFAULT_PAGE, FileAccess.WRITE)
 	file.store_string("<html><head><title>New Tab</title></head><body bgcolor=\"white\"><h2>Welcome to gdCEF !</h2><p>This a generated page.</p></body></html>")
 	file.close()
 	pass
 
-# ==============================================================================
-# Save page as html.
-# ==============================================================================
 func _on_saving_page(html, browser):
 	var path = ProjectSettings.globalize_path(SAVED_PAGE)
 	var file = FileAccess.open(SAVED_PAGE, FileAccess.WRITE)
@@ -45,25 +35,14 @@ func _on_saving_page(html, browser):
 	$AcceptDialog.show()
 	pass
 
-# ==============================================================================
-# Callback when a page has ended to load with success (200): we print a message
-# ==============================================================================
 func _on_page_loaded(browser):
-	#var L = $Panel/VBox/HBox/BrowserList
 	var url = browser.get_url()
-# TODO
-#	L.set_item_text(L.get_selected_id(), url)
-	$Panel/VBox/HBox2/Info.set_text(url + " loaded as ID " + browser.name)
+	
 	if !ignore_new_urls:
 		tabs_overlay.update_tab(url)
 	else:
 		ignore_new_urls = false
-	#print("Browser named '" + browser.name + "' inserted on list at index " + str(L.get_selected_id()) + ": " + url)
 
-# ==============================================================================
-# Callback when a page has ended to load with failure.
-# Display a load error message using a data: URI.
-# ==============================================================================
 func _on_page_failed_loading(aborted, msg_err, node):
 	var html = "<html><body bgcolor=\"white\"><h2>Failed to load URL " + node.get_url()
 	print_debug(msg_err)
@@ -74,17 +53,12 @@ func _on_page_failed_loading(aborted, msg_err, node):
 	node.load_data_uri(html, "text/html")
 	pass
 
-# Generate a unique ID for each new browser
 func generate_browser_id():
 	browser_id_counter += 1
 	return str(browser_id_counter)
 
-# ==============================================================================
-# Create a new browser and return it or return null if failed.
-# ==============================================================================
 func create_browser(url):
 	ignore_new_urls = true
-	# Wait one frame for the texture rect to get its size
 	await get_tree().process_frame
 
 	var browser = $CEF.create_browser(url, $Panel/VBox/TextureRect, {"javascript":true, "frame_rate": 120 })
@@ -92,10 +66,8 @@ func create_browser(url):
 		$Panel/VBox/HBox2/Info.set_text($CEF.get_error())
 		return null
 
-	# Generate a unique ID for this browser
 	var browser_id = generate_browser_id()
 	
-	# Store the browser in our dictionary
 	browsers[browser_id] = browser
 
 	# Loading callbacks
@@ -108,10 +80,6 @@ func create_browser(url):
 
 	return browser
 
-# ==============================================================================
-# Search the desired by its name. Return the browser as Godot node or null if
-# not found.
-# ==============================================================================
 func get_browser(browser_id):
 	if not $CEF.is_alive():
 		return null
@@ -124,9 +92,6 @@ func get_browser(browser_id):
 		return null
 	return browser
 
-# ==============================================================================
-# Remove a browser from the list and close it
-# ==============================================================================
 func remove_browser(browser_id: String):
 	if browsers.has(browser_id):
 		var browser = browsers[browser_id]
@@ -139,73 +104,6 @@ func remove_browser(browser_id: String):
 		if browsers.size() == 0:
 			get_tree().quit()
 
-####
-#### Top menu
-####
-
-# ==============================================================================
-# Create a new browser node. Note: Godot does not show children nodes so you
-# will not see created browsers as sub nodes.
-# ==============================================================================
-func _on_Add_pressed():
-	var browser = await create_browser("file://" + ProjectSettings.globalize_path(DEFAULT_PAGE))
-	if browser != null:
-		current_browser = browser
-	pass
-
-# ==============================================================================
-# Home button pressed: load a local HTML document.
-# ==============================================================================
-func _on_Home_pressed():
-	if current_browser != null:
-		current_browser.load_url(HOME_PAGE)
-	else:
-		$Panel/VBox/HBox2/Info.set_text("No active browser")
-	pass
-
-# ==============================================================================
-# Go to the URL given by the text edit widget.
-# ==============================================================================
-func _on_go_pressed():
-	if current_browser != null:
-		current_browser.load_url($Panel/VBox/HBox/TextEdit.text)
-	else:
-		$Panel/VBox/HBox2/Info.set_text("No active browser")
-	pass
-
-# ==============================================================================
-# Reload the current page
-# ==============================================================================
-func _on_refresh_pressed():
-	if current_browser == null:
-		$Panel/VBox/HBox2/Info.set_text("No active browser")
-		return
-	current_browser.reload()
-	pass
-
-# ==============================================================================
-# Go to previously visited page
-# ==============================================================================
-func _on_Prev_pressed():
-	if current_browser != null:
-		current_browser.previous_page()
-	else:
-		$Panel/VBox/HBox2/Info.set_text("No active browser")
-	pass
-
-# ==============================================================================
-# Go to next visited page
-# ==============================================================================
-func _on_Next_pressed():
-	if current_browser != null:
-		current_browser.next_page()
-	else:
-		$Panel/VBox/HBox2/Info.set_text("No active browser")
-	pass
-
-# ==============================================================================
-# Select the new desired browser from the list of tabs.
-# ==============================================================================
 func switch_tab(index: int):
 	var new_browser = get_browser(str(index + 1))
 	
@@ -216,13 +114,6 @@ func switch_tab(index: int):
 	$Panel/VBox/TextureRect.texture = current_browser.get_texture()
 	current_browser.resize($Panel/VBox/TextureRect.get_size())
 
-####
-#### Bottom menu
-####
-
-# ==============================================================================
-# Mute/unmute the sound
-# ==============================================================================
 func _on_mute_pressed():
 	if current_browser == null:
 		$Panel/VBox/HBox2/Info.set_text("No active browser")
@@ -231,13 +122,6 @@ func _on_mute_pressed():
 	$AudioStreamPlayer2D.stream_paused = $Panel/VBox/HBox2/Mute.button_pressed
 	pass
 
-####
-#### CEF inputs
-####
-
-# ==============================================================================
-# Get mouse events and broadcast them to CEF
-# ==============================================================================
 func _on_TextureRect_gui_input(event):
 	if current_browser == null:
 		return
@@ -270,9 +154,6 @@ func _on_TextureRect_gui_input(event):
 		current_browser.set_mouse_moved(event.position.x, event.position.y)
 	pass
 
-# ==============================================================================
-# Make the CEF browser reacts from keyboard events.
-# ==============================================================================
 func _input(event):
 	if current_browser == null:
 		return
@@ -300,10 +181,8 @@ func _input(event):
 			event.is_command_or_control_pressed()
 		)
 
-# ==============================================================================
-# Windows has resized
-# ==============================================================================
 func _on_texture_rect_resized():
+	print("WINDWO RESIZED!!!!!")
 	if current_browser == null:
 		return
 	current_browser.resize($Panel/VBox/TextureRect.get_size())
@@ -319,13 +198,6 @@ func _on_texture_rect_resized():
 	search_bar.position.x = (panel_size.x - search_bar_size.x) / 2
 	search_bar.position.y = (panel_size.y - search_bar_size.y) / 2
 
-####
-#### Godot
-####
-
-# ==============================================================================
-# Create a single browser named "current_browser" that is attached as child node to $CEF.
-# ==============================================================================
 func _ready():
 	create_default_page()
 	
@@ -341,9 +213,6 @@ func _ready():
 	# Wait one frame for the texture rect to get its size
 	current_browser = await create_browser(HOME_PAGE)
 
-# ==============================================================================
-# CEF audio will be routed to this Godot stream object.
-# ==============================================================================
 func _on_routing_audio_pressed():
 	if current_browser == null:
 		$Panel/VBox/HBox2/Info.set_text("No active browser")

@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cg0dpkfqho8xs"]
+[gd_scene load_steps=7 format=3 uid="uid://cg0dpkfqho8xs"]
 
 [ext_resource type="Script" path="res://Scripts/CEF.gd" id="1_j4gvw"]
 [ext_resource type="Shader" path="res://Shaders/Blur.gdshader" id="2_qqkxj"]
-[ext_resource type="Script" path="res://Scripts/ControlDefocus.gd" id="2_xatmj"]
 [ext_resource type="PackedScene" uid="uid://scu3pvp6we0w" path="res://Scenes/TabsOverlay.tscn" id="3_fpfdj"]
 [ext_resource type="PackedScene" uid="uid://bqc4y2g8862jh" path="res://Scenes/SearchBar.tscn" id="5_i6ar6"]
 
@@ -44,93 +43,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_vertical = 3
 
-[node name="HBox" type="HBoxContainer" parent="Panel/VBox"]
-layout_mode = 2
-
-[node name="New" type="Button" parent="Panel/VBox/HBox"]
-layout_mode = 2
-tooltip_text = "New empty document"
-text = "New"
-script = ExtResource("2_xatmj")
-
-[node name="Home" type="Button" parent="Panel/VBox/HBox"]
-layout_mode = 2
-tooltip_text = "Go to home page"
-text = "Home"
-script = ExtResource("2_xatmj")
-
-[node name="URL" type="Label" parent="Panel/VBox/HBox"]
-layout_mode = 2
-mouse_filter = 0
-text = "URL:"
-script = ExtResource("2_xatmj")
-
-[node name="TextEdit" type="LineEdit" parent="Panel/VBox/HBox" groups=["gui_input"]]
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-tooltip_text = "Type your desired URl and then click on the go button"
-script = ExtResource("2_xatmj")
-
-[node name="Go" type="Button" parent="Panel/VBox/HBox"]
-layout_mode = 2
-tooltip_text = "Load a page given its URL"
-text = "Go"
-script = ExtResource("2_xatmj")
-
-[node name="Refresh" type="Button" parent="Panel/VBox/HBox"]
-layout_mode = 2
-tooltip_text = "Reload the page"
-text = "Refresh"
-script = ExtResource("2_xatmj")
-
-[node name="Prev" type="Button" parent="Panel/VBox/HBox"]
-layout_mode = 2
-tooltip_text = "Go to previous page"
-text = "<"
-script = ExtResource("2_xatmj")
-
-[node name="Next" type="Button" parent="Panel/VBox/HBox"]
-layout_mode = 2
-tooltip_text = "Go to next page"
-text = ">"
-script = ExtResource("2_xatmj")
-
-[node name="TabBar" type="Label" parent="Panel/VBox/HBox"]
-layout_mode = 2
-mouse_filter = 0
-text = "Opened:"
-script = ExtResource("2_xatmj")
-
 [node name="TextureRect" type="TextureRect" parent="Panel/VBox"]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 0
 expand_mode = 1
 stretch_mode = 3
-
-[node name="HBox2" type="HBoxContainer" parent="Panel/VBox"]
-layout_mode = 2
-
-[node name="RoutingAudio" type="CheckBox" parent="Panel/VBox/HBox2"]
-layout_mode = 2
-tooltip_text = "Route CEF audio to Godot and apply a sound effect"
-text = " Audio routing"
-
-[node name="Mute" type="CheckBox" parent="Panel/VBox/HBox2"]
-layout_mode = 2
-text = "Mute sound"
-
-[node name="Info2" type="Label" parent="Panel/VBox/HBox2"]
-layout_mode = 2
-size_flags_horizontal = 0
-mouse_filter = 0
-text = "Info:"
-horizontal_alignment = 3
-
-[node name="Info" type="Label" parent="Panel/VBox/HBox2"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 0
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
@@ -165,14 +83,5 @@ offset_bottom = 340.0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_uw372")
 
-[connection signal="pressed" from="Panel/VBox/HBox/New" to="." method="_on_Add_pressed"]
-[connection signal="pressed" from="Panel/VBox/HBox/Home" to="." method="_on_Home_pressed"]
-[connection signal="pressed" from="Panel/VBox/HBox/Go" to="." method="_on_go_pressed"]
-[connection signal="pressed" from="Panel/VBox/HBox/Refresh" to="." method="_on_refresh_pressed"]
-[connection signal="pressed" from="Panel/VBox/HBox/Prev" to="." method="_on_Prev_pressed"]
-[connection signal="pressed" from="Panel/VBox/HBox/Next" to="." method="_on_Next_pressed"]
-[connection signal="pressed" from="Panel/VBox/HBox/Next" to="." method="_on_Prev_pressed"]
 [connection signal="gui_input" from="Panel/VBox/TextureRect" to="." method="_on_TextureRect_gui_input"]
 [connection signal="resized" from="Panel/VBox/TextureRect" to="." method="_on_texture_rect_resized"]
-[connection signal="pressed" from="Panel/VBox/HBox2/RoutingAudio" to="." method="_on_routing_audio_pressed"]
-[connection signal="pressed" from="Panel/VBox/HBox2/Mute" to="." method="_on_mute_pressed"]
