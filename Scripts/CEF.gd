@@ -18,6 +18,15 @@ var is_loading_blocked = false
 @onready var mouse_pressed : bool = false
 @onready var tabs_overlay = $TabsOverlay
 
+@onready var nodes_to_resize: Array[Node] = [
+	$BlurOverlay,
+	$BlurOverlay/ColorOverlay,
+	$CanvasLayer3/ColorRect2,
+	$CanvasLayer2/ColorRect,
+	$CanvasLayer/FeverDream,
+	$CanvasLayer/RandomAssHighlight
+]
+
 func create_default_page():
 	var file = FileAccess.open(DEFAULT_PAGE, FileAccess.WRITE)
 	file.store_string("<html><head><title>New Tab</title></head><body bgcolor=\"white\"><h2>Welcome to gdCEF !</h2><p>This a generated page.</p></body></html>")
@@ -56,7 +65,7 @@ func _on_page_failed_loading(aborted, msg_err, node):
 		failed_loading_count = 1
 	
 	last_failed_loading_time = current_time
-	
+
 	if failed_loading_count >= 3 and !is_loading_blocked:
 		is_loading_blocked = true
 		print("Too many failed loading attempts. Loading Google.com...")
@@ -216,8 +225,8 @@ func _on_texture_rect_resized():
 	
 	var panel_size = $Panel.get_size()
 	
-	$BlurOverlay.size = panel_size
-	$BlurOverlay/ColorOverlay.size = panel_size
+	for node in nodes_to_resize:
+		node.size = panel_size
 	
 	var search_bar = $SearchBar
 	var search_bar_size = search_bar.get_size()

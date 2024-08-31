@@ -1,11 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://cg0dpkfqho8xs"]
+[gd_scene load_steps=20 format=3 uid="uid://cg0dpkfqho8xs"]
 
 [ext_resource type="Script" path="res://Scripts/CEF.gd" id="1_j4gvw"]
 [ext_resource type="Shader" path="res://Shaders/test.gdshader" id="1_of60d"]
 [ext_resource type="Shader" path="res://Shaders/Blur.gdshader" id="2_qqkxj"]
 [ext_resource type="PackedScene" uid="uid://scu3pvp6we0w" path="res://Scenes/TabsOverlay.tscn" id="3_fpfdj"]
 [ext_resource type="PackedScene" uid="uid://bqc4y2g8862jh" path="res://Scenes/SearchBar.tscn" id="5_i6ar6"]
-[ext_resource type="Shader" path="res://Shaders/test2.gdshader" id="6_6nit7"]
+[ext_resource type="Shader" path="res://Shaders/wind.gdshader" id="5_j6ru3"]
+[ext_resource type="Shader" path="res://Shaders/BloodLossFeverBullshit.gdshader" id="6_6nit7"]
 [ext_resource type="Shader" path="res://Shaders/test3.gdshader" id="7_tdbtu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gxtfe"]
@@ -19,6 +20,119 @@ background_mode = 3
 glow_enabled = true
 glow_strength = 0.49
 glow_blend_mode = 1
+
+[sub_resource type="Shader" id="Shader_jg38n"]
+code = "shader_type canvas_item;
+
+#define iResolution 1.0/SCREEN_PIXEL_SIZE
+#define iTime TIME
+
+uniform sampler2D iChannel0;
+uniform float strength = 1.0;
+uniform float speed = 1.0;
+uniform vec2 disp = vec2(1.0, 1.0);
+
+
+vec2 GetGradient(vec2 intPos, float t) {
+    
+    // Uncomment for calculated rand
+    //float rand = fract(sin(dot(intPos, vec2(12.9898, 78.233))) * 43758.5453);;
+    
+    // Texture-based rand (a bit faster on my GPU)
+    float rand = texture(iChannel0, intPos / 64.0).r;
+    
+    // Rotate gradient: random starting rotation, random rotation rate
+    float angle = 6.283185 * rand + 4.0 * t * rand;
+    return vec2(cos(angle), sin(angle));
+}
+
+
+float Pseudo3dNoise(vec3 pos) {
+    vec2 i = floor(pos.xy);
+    vec2 f = pos.xy - i;
+    vec2 blend = f * f * (3.0 - 2.0 * f);
+    float noiseVal = 
+        mix(
+            mix(
+                dot(GetGradient(i + vec2(0, 0), pos.z), f - vec2(0, 0)),
+                dot(GetGradient(i + vec2(1, 0), pos.z), f - vec2(1, 0)),
+                blend.x),
+            mix(
+                dot(GetGradient(i + vec2(0, 1), pos.z), f - vec2(0, 1)),
+                dot(GetGradient(i + vec2(1, 1), pos.z), f - vec2(1, 1)),
+                blend.x),
+        blend.y
+    );
+    return noiseVal / 0.7; // normalize to about [-1..1]
+}
+
+
+void fragment() { 
+	float ratio = SCREEN_PIXEL_SIZE.x / SCREEN_PIXEL_SIZE.y;
+	vec2 noise_uv = UV / vec2(ratio, 1.0);
+    float noiseVal = 0.5 + 0.5 * Pseudo3dNoise(vec3(noise_uv * 10.0 * strength, iTime * speed));
+    
+    vec2 uv = UV;
+    float noiseWeight = 0.05;
+    uv.x += noiseVal * noiseWeight * disp.x;
+    uv.y += noiseVal * noiseWeight * disp.y;
+    vec3 col = texture(iChannel0,uv).rgb;
+    
+    COLOR.rgb = vec3(col);
+    
+}"
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nw78w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kp26g"]
+shader = SubResource("Shader_jg38n")
+shader_parameter/strength = 1.0
+shader_parameter/speed = 1.0
+shader_parameter/disp = Vector2(200, 100)
+shader_parameter/iChannel0 = SubResource("NoiseTexture2D_nw78w")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q4nje"]
+shader = ExtResource("5_j6ru3")
+shader_parameter/angle = -0.125
+shader_parameter/position = -0.195
+shader_parameter/spread = 0.565
+shader_parameter/cutoff = 0.15
+shader_parameter/falloff = 0.12
+shader_parameter/edge_fade = 0.185
+shader_parameter/speed = 13.821
+shader_parameter/ray1_density = 8.0
+shader_parameter/ray2_density = 30.0
+shader_parameter/ray2_intensity = 0.17
+shader_parameter/color = Color(1, 0.9, 0.65, 0.3)
+shader_parameter/hdr = true
+shader_parameter/seed = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7khm3"]
+shader = ExtResource("7_tdbtu")
+shader_parameter/crack_depth = 2.236
+shader_parameter/crack_scale = 4.0
+shader_parameter/crack_zebra_scale = 2.67
+shader_parameter/crack_zebra_amp = 1.3
+shader_parameter/crack_profile = 1.0
+shader_parameter/crack_slope = 45.8
+shader_parameter/crack_width = 0.001
+shader_parameter/refraction_offset = Vector2(0, 0)
+shader_parameter/reflection_offset = Vector2(1, 1)
+shader_parameter/reflection_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_41mvn"]
+shader = ExtResource("6_6nit7")
+shader_parameter/bits_per_channel = 8.0
+shader_parameter/dither_strength = 0.114
+shader_parameter/bloom_threshold = 1.0
+shader_parameter/bloom_intensity = 10.0
+shader_parameter/initial_pixelation = 2000.0
+shader_parameter/color_relaxation = 0.0
+shader_parameter/relaxation_color = Vector3(1, 1, 1)
+shader_parameter/threshold_r = 0.5
+shader_parameter/threshold_g = 0.5
+shader_parameter/threshold_b = 0.5
+shader_parameter/threshold_color = Vector3(1, 1, 1)
 
 [sub_resource type="Gradient" id="Gradient_0tigl"]
 colors = PackedColorArray(0.961188, 5.77569e-07, 0.503543, 1, 0, 1, 1, 1)
@@ -34,22 +148,6 @@ shader_parameter/highlight_strength = 0.5
 shader_parameter/color_mode_toggle = false
 shader_parameter/is_horizontal = false
 shader_parameter/color_gradient = SubResource("GradientTexture1D_aush5")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_41mvn"]
-shader = ExtResource("6_6nit7")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7khm3"]
-shader = ExtResource("7_tdbtu")
-shader_parameter/crack_depth = 2.236
-shader_parameter/crack_scale = 4.0
-shader_parameter/crack_zebra_scale = 2.67
-shader_parameter/crack_zebra_amp = 1.3
-shader_parameter/crack_profile = 1.0
-shader_parameter/crack_slope = 45.8
-shader_parameter/crack_width = 0.001
-shader_parameter/refraction_offset = Vector2(0, 0)
-shader_parameter/reflection_offset = Vector2(1, 1)
-shader_parameter/reflection_color = Color(0, 0, 0, 1)
 
 [node name="GUI" type="Control"]
 layout_mode = 3
@@ -117,23 +215,39 @@ offset_bottom = 340.0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_uw372")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_kp26g")
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 647.0
+mouse_filter = 2
 
-[node name="RandomAssHighlight" type="ColorRect" parent="CanvasLayer"]
-material = SubResource("ShaderMaterial_ulghg")
+[node name="CanvasLayer3" type="CanvasLayer" parent="."]
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer3"]
+material = SubResource("ShaderMaterial_q4nje")
+offset_right = 1154.0
+offset_bottom = 650.0
+mouse_filter = 2
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer2"]
+material = SubResource("ShaderMaterial_7khm3")
 offset_right = 1152.0
 offset_bottom = 648.0
 mouse_filter = 2
 
-[node name="InvertedScreen" type="ColorRect" parent="CanvasLayer"]
-visible = false
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="FeverDream" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_41mvn")
 offset_right = 1152.0
 offset_bottom = 648.0
 mouse_filter = 2
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-material = SubResource("ShaderMaterial_7khm3")
+[node name="RandomAssHighlight" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_ulghg")
 offset_right = 1152.0
 offset_bottom = 648.0
 mouse_filter = 2
