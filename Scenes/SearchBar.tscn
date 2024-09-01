@@ -20,8 +20,8 @@ texture = ExtResource("2_k476r")
 [node name="TextEdit" type="TextEdit" parent="." groups=["gui_input"]]
 material = SubResource("ShaderMaterial_7c5eb")
 layout_mode = 0
-offset_right = 496.0
-offset_bottom = 65.0
+offset_right = 483.0
+offset_bottom = 69.0
 theme_override_colors/background_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = 10
 theme_override_font_sizes/font_size = 26

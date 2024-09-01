@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cg0dpkfqho8xs"]
+[gd_scene load_steps=21 format=3 uid="uid://cg0dpkfqho8xs"]
 
 [ext_resource type="Script" path="res://Scripts/CEF.gd" id="1_j4gvw"]
 [ext_resource type="Shader" path="res://Shaders/test.gdshader" id="1_of60d"]
@@ -8,6 +8,7 @@
 [ext_resource type="Shader" path="res://Shaders/wind.gdshader" id="5_j6ru3"]
 [ext_resource type="Shader" path="res://Shaders/BloodLossFeverBullshit.gdshader" id="6_6nit7"]
 [ext_resource type="Shader" path="res://Shaders/test3.gdshader" id="7_tdbtu"]
+[ext_resource type="Script" path="res://Scripts/Camera.gd" id="9_0xrsy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gxtfe"]
 shader = ExtResource("2_qqkxj")
@@ -216,6 +217,7 @@ offset_bottom = 340.0
 environment = SubResource("Environment_uw372")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_kp26g")
 layout_mode = 0
 offset_right = 1152.0
@@ -231,6 +233,7 @@ offset_bottom = 650.0
 mouse_filter = 2
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer2"]
 material = SubResource("ShaderMaterial_7khm3")
@@ -239,6 +242,7 @@ offset_bottom = 648.0
 mouse_filter = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="FeverDream" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_41mvn")
@@ -251,6 +255,11 @@ material = SubResource("ShaderMaterial_ulghg")
 offset_right = 1152.0
 offset_bottom = 648.0
 mouse_filter = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(576, 324)
+zoom = Vector2(1.03, 1.03)
+script = ExtResource("9_0xrsy")
 
 [connection signal="gui_input" from="Panel/VBox/TextureRect" to="." method="_on_TextureRect_gui_input"]
 [connection signal="resized" from="Panel/VBox/TextureRect" to="." method="_on_texture_rect_resized"]
