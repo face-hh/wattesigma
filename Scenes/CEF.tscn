@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://cg0dpkfqho8xs"]
+[gd_scene load_steps=22 format=3 uid="uid://cg0dpkfqho8xs"]
 
 [ext_resource type="Script" path="res://Scripts/CEF.gd" id="1_j4gvw"]
 [ext_resource type="Shader" path="res://Shaders/test.gdshader" id="1_of60d"]
 [ext_resource type="Shader" path="res://Shaders/Blur.gdshader" id="2_qqkxj"]
 [ext_resource type="PackedScene" uid="uid://scu3pvp6we0w" path="res://Scenes/TabsOverlay.tscn" id="3_fpfdj"]
+[ext_resource type="PackedScene" uid="uid://35gx22cp3up" path="res://Scenes/settings.tscn" id="5_11a38"]
 [ext_resource type="PackedScene" uid="uid://bqc4y2g8862jh" path="res://Scenes/SearchBar.tscn" id="5_i6ar6"]
 [ext_resource type="Shader" path="res://Shaders/wind.gdshader" id="5_j6ru3"]
 [ext_resource type="Shader" path="res://Shaders/BloodLossFeverBullshit.gdshader" id="6_6nit7"]
@@ -138,7 +139,7 @@ shader_parameter/threshold_color = Vector3(1, 1, 1)
 [sub_resource type="Gradient" id="Gradient_0tigl"]
 colors = PackedColorArray(0.961188, 5.77569e-07, 0.503543, 1, 0, 1, 1, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_aush5"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1gra4"]
 gradient = SubResource("Gradient_0tigl")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ulghg"]
@@ -148,7 +149,7 @@ shader_parameter/speed = 2.625
 shader_parameter/highlight_strength = 0.5
 shader_parameter/color_mode_toggle = false
 shader_parameter/is_horizontal = false
-shader_parameter/color_gradient = SubResource("GradientTexture1D_aush5")
+shader_parameter/color_gradient = SubResource("GradientTexture1D_1gra4")
 
 [node name="GUI" type="Control"]
 layout_mode = 3
@@ -213,6 +214,9 @@ offset_top = 271.0
 offset_right = 840.0
 offset_bottom = 340.0
 
+[node name="Settings" parent="." instance=ExtResource("5_11a38")]
+visible = false
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_uw372")
 
@@ -225,6 +229,7 @@ offset_bottom = 647.0
 mouse_filter = 2
 
 [node name="CanvasLayer3" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect2" type="ColorRect" parent="CanvasLayer3"]
 material = SubResource("ShaderMaterial_q4nje")
@@ -242,21 +247,23 @@ offset_bottom = 648.0
 mouse_filter = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="FeverDream" type="ColorRect" parent="CanvasLayer"]
+visible = false
 material = SubResource("ShaderMaterial_41mvn")
 offset_right = 1152.0
 offset_bottom = 648.0
 mouse_filter = 2
 
 [node name="RandomAssHighlight" type="ColorRect" parent="CanvasLayer"]
+visible = false
 material = SubResource("ShaderMaterial_ulghg")
 offset_right = 1152.0
 offset_bottom = 648.0
 mouse_filter = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 offset = Vector2(576, 324)
 zoom = Vector2(1.03, 1.03)
 script = ExtResource("9_0xrsy")

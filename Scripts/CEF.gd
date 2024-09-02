@@ -2,7 +2,7 @@ extends Control
 
 # URL
 const DEFAULT_PAGE = "user://default_page.html"
-const SAVED_PAGE = "user://saved_page.html"
+#const SAVED_PAGE = "user://saved_page.html"
 const HOME_PAGE = "https://google.com"
 const RADIO_PAGE = "http://streaming.radio.co/s9378c22ee/listen"
 
@@ -33,20 +33,20 @@ func create_default_page():
 	file.close()
 	pass
 
-func _on_saving_page(html, browser):
-	var path = ProjectSettings.globalize_path(SAVED_PAGE)
-	var file = FileAccess.open(SAVED_PAGE, FileAccess.WRITE)
-	if (file != null):
-		file.store_string(html)
-		file.close()
-		$AcceptDialog.title = browser.get_url()
-		$AcceptDialog.dialog_text = "Page saved at:\n" + path
-	else:
-		$AcceptDialog.title = "Alert!"
-		$AcceptDialog.dialog_text = "Failed creating the file " + path
-	$AcceptDialog.popup_centered(Vector2(0,0))
-	$AcceptDialog.show()
-	pass
+#func _on_saving_page(html, browser):
+#	var path = ProjectSettings.globalize_path(SAVED_PAGE)
+#	var file = FileAccess.open(SAVED_PAGE, FileAccess.WRITE)
+#	if (file != null):
+#		file.store_string(html)
+#		file.close()
+#		$AcceptDialog.title = browser.get_url()
+#		$AcceptDialog.dialog_text = "Page saved at:\n" + path
+#	else:
+#		$AcceptDialog.title = "Alert!"
+#		$AcceptDialog.dialog_text = "Failed creating the file " + path
+#	$AcceptDialog.popup_centered(Vector2(0,0))
+#	$AcceptDialog.show()
+#	pass
 
 func _on_page_loaded(browser):
 	var url = browser.get_url()
@@ -107,7 +107,7 @@ func create_browser(url):
 	browsers[browser_id] = browser
 
 	# Loading callbacks
-	browser.connect("on_html_content_requested", _on_saving_page)
+#	browser.connect("on_html_content_requested", _on_saving_page)
 	browser.connect("on_page_loaded", _on_page_loaded)
 	browser.connect("on_page_failed_loading", _on_page_failed_loading)
 	

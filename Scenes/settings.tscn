@@ -1,0 +1,226 @@
+[gd_scene load_steps=14 format=3 uid="uid://35gx22cp3up"]
+
+[ext_resource type="Texture2D" uid="uid://bntvkbr3j8whj" path="res://Assets/Misc/sunlight_icon.png" id="1_3mx27"]
+[ext_resource type="Script" path="res://Scripts/Settings.gd" id="1_8rde3"]
+[ext_resource type="FontFile" uid="uid://c0jlum1vbgwyn" path="res://Assets/Fonts/Sevillana-Regular.ttf" id="1_egus5"]
+[ext_resource type="FontFile" uid="uid://bvf57trwwd8xm" path="res://Assets/Fonts/Handjet-VariableFont_ELGR,ELSH,wght.ttf" id="2_nt6fk"]
+[ext_resource type="Shader" path="res://Shaders/BloodLossFeverBullshit.gdshader" id="4_436y7"]
+[ext_resource type="FontFile" uid="uid://b3l7o8f44t2or" path="res://Assets/Fonts/BaskervvilleSC-Regular.ttf" id="5_78d45"]
+[ext_resource type="Shader" path="res://Shaders/test.gdshader" id="6_wt2dt"]
+[ext_resource type="Texture2D" uid="uid://8ed7lakxwvm4" path="res://Assets/Misc/iphone.png" id="7_ie3pe"]
+[ext_resource type="Texture2D" uid="uid://1e5symfe2pl3" path="res://Assets/Misc/face-screaming-in-fear_1f631.png" id="8_3hp8t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1m0bf"]
+shader = ExtResource("4_436y7")
+shader_parameter/bits_per_channel = 8.0
+shader_parameter/dither_strength = 0.114
+shader_parameter/bloom_threshold = 1.0
+shader_parameter/bloom_intensity = 10.0
+shader_parameter/initial_pixelation = 2000.0
+shader_parameter/color_relaxation = 0.0
+shader_parameter/relaxation_color = Vector3(1, 1, 1)
+shader_parameter/threshold_r = 0.5
+shader_parameter/threshold_g = 0.5
+shader_parameter/threshold_b = 0.5
+shader_parameter/threshold_color = Vector3(1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_c33qd"]
+colors = PackedColorArray(0.961188, 5.77569e-07, 0.503543, 1, 0, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_aush5"]
+gradient = SubResource("Gradient_c33qd")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1s04u"]
+shader = ExtResource("6_wt2dt")
+shader_parameter/size_effect = 0.1
+shader_parameter/speed = 2.625
+shader_parameter/highlight_strength = 0.5
+shader_parameter/color_mode_toggle = false
+shader_parameter/is_horizontal = false
+shader_parameter/color_gradient = SubResource("GradientTexture1D_aush5")
+
+[node name="Settings" type="Node2D"]
+script = ExtResource("1_8rde3")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 97.0
+offset_top = 70.0
+offset_right = 470.0
+offset_bottom = 202.0
+rotation = -0.0663225
+scale = Vector2(0.365, 0.365)
+theme_override_font_sizes/font_size = 96
+text = "Shaders"
+
+[node name="Sunlight" type="Node2D" parent="."]
+
+[node name="Label2" type="Label" parent="Sunlight"]
+offset_left = 286.0
+offset_top = 126.0
+offset_right = 667.0
+offset_bottom = 258.0
+rotation = 0.0383972
+scale = Vector2(0.295, 0.295)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("1_egus5")
+theme_override_font_sizes/font_size = 96
+text = "Sunlight"
+
+[node name="CheckButton" type="CheckButton" parent="Sunlight"]
+offset_left = 221.0
+offset_top = 142.0
+offset_right = 265.0
+offset_bottom = 166.0
+
+[node name="SunlightIcon" type="Sprite2D" parent="Sunlight"]
+position = Vector2(180, 156)
+scale = Vector2(0.115, 0.115)
+texture = ExtResource("1_3mx27")
+
+[node name="FeverDream" type="Node2D" parent="."]
+
+[node name="Label2" type="Label" parent="FeverDream"]
+offset_left = 276.0
+offset_top = 204.0
+offset_right = 842.0
+offset_bottom = 336.0
+rotation = 0.113446
+scale = Vector2(0.295, 0.295)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("2_nt6fk")
+theme_override_font_sizes/font_size = 166
+text = "fever dream"
+
+[node name="CheckButton" type="CheckButton" parent="FeverDream"]
+offset_left = 159.0
+offset_top = 214.0
+offset_right = 203.0
+offset_bottom = 238.0
+scale = Vector2(2.635, 2.635)
+
+[node name="FeverDream" type="ColorRect" parent="FeverDream"]
+material = SubResource("ShaderMaterial_1m0bf")
+offset_left = 63.0
+offset_top = 197.0
+offset_right = 166.0
+offset_bottom = 287.0
+mouse_filter = 2
+
+[node name="RandomAhhHighlighter" type="Node2D" parent="."]
+
+[node name="Label2" type="Label" parent="RandomAhhHighlighter"]
+offset_left = 244.0
+offset_top = 320.0
+offset_right = 911.0
+offset_bottom = 507.0
+scale = Vector2(0.295, 0.295)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("5_78d45")
+theme_override_font_sizes/font_size = 106
+text = "random ahh highlighter"
+
+[node name="CheckButton" type="CheckButton" parent="RandomAhhHighlighter"]
+offset_left = 223.0
+offset_top = 325.0
+offset_right = 267.0
+offset_bottom = 349.0
+rotation = 1.91114
+scale = Vector2(0.98, 0.98)
+
+[node name="RandomAssHighlight" type="ColorRect" parent="RandomAhhHighlighter"]
+material = SubResource("ShaderMaterial_1s04u")
+offset_left = 98.0
+offset_top = 316.0
+offset_right = 615.0
+offset_bottom = 367.0
+mouse_filter = 2
+
+[node name="FeverDream3" type="Node2D" parent="."]
+
+[node name="Face-screaming-in-fear1f631" type="Sprite2D" parent="FeverDream3"]
+position = Vector2(431, 412)
+scale = Vector2(0.48125, 0.1875)
+texture = ExtResource("8_3hp8t")
+
+[node name="Label2" type="Label" parent="FeverDream3"]
+offset_left = 239.0
+offset_top = 416.0
+offset_right = 1440.0
+offset_bottom = 603.0
+scale = Vector2(0.295, 0.295)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 30
+theme_override_constants/shadow_offset_y = 45
+theme_override_constants/outline_size = 30
+theme_override_constants/shadow_outline_size = 20
+theme_override_font_sizes/font_size = 106
+text = "screen crack ?"
+
+[node name="CheckButton" type="CheckButton" parent="FeverDream3"]
+offset_left = 173.0
+offset_top = 415.0
+offset_right = 235.0
+offset_bottom = 473.0
+theme_override_icons/checked = ExtResource("7_ie3pe")
+
+[node name="Cursor" type="Node2D" parent="."]
+
+[node name="Entirely" type="Node2D" parent="Cursor"]
+
+[node name="Label" type="Label" parent="Cursor/Entirely"]
+offset_left = 520.0
+offset_top = 64.0
+offset_right = 981.0
+offset_bottom = 87.0
+scale = Vector2(1.295, 1.295)
+text = "Stop this fucking camera motion its making me sick"
+
+[node name="CheckBox" type="CheckBox" parent="Cursor/Entirely"]
+offset_left = 488.0
+offset_top = 67.0
+offset_right = 512.0
+offset_bottom = 91.0
+
+[node name="CursorFollow" type="Node2D" parent="Cursor"]
+
+[node name="Label2" type="Label" parent="Cursor/CursorFollow"]
+offset_left = 521.0
+offset_top = 102.0
+offset_right = 946.0
+offset_bottom = 125.0
+scale = Vector2(1.295, 1.295)
+text = "gimme camera follow on mouse :3"
+
+[node name="CheckBox2" type="CheckBox" parent="Cursor/CursorFollow"]
+offset_left = 490.0
+offset_top = 106.0
+offset_right = 514.0
+offset_bottom = 130.0
+
+[node name="CircleFollow" type="Node2D" parent="Cursor"]
+
+[node name="Label3" type="Label" parent="Cursor/CircleFollow"]
+offset_left = 511.0
+offset_top = 141.0
+offset_right = 936.0
+offset_bottom = 164.0
+scale = Vector2(1.295, 1.295)
+text = "rotate my camera in circles beecuase why not"
+
+[node name="CheckBox3" type="CheckBox" parent="Cursor/CircleFollow"]
+offset_left = 480.0
+offset_top = 145.0
+offset_right = 504.0
+offset_bottom = 169.0
+
+[connection signal="toggled" from="Sunlight/CheckButton" to="." method="_on_sunlight"]
+[connection signal="toggled" from="FeverDream/CheckButton" to="." method="_on_fever_dream"]
+[connection signal="toggled" from="RandomAhhHighlighter/CheckButton" to="." method="_on_highlighter"]
+[connection signal="toggled" from="FeverDream3/CheckButton" to="." method="_on_crack"]
+[connection signal="toggled" from="Cursor/Entirely/CheckBox" to="." method="_on_entire_camera"]
+[connection signal="toggled" from="Cursor/CursorFollow/CheckBox2" to="." method="_on_cursor"]
+[connection signal="toggled" from="Cursor/CircleFollow/CheckBox3" to="." method="_on_circle"]

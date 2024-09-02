@@ -4,6 +4,7 @@ extends Node
 @onready var blur_overlay = $/root/GUI/BlurOverlay
 @onready var tabs_overlay = $/root/GUI/TabsOverlay
 @onready var search_bar = $/root/GUI/SearchBar
+@onready var settings = $/root/GUI/Settings
 
 var non_fading_overlays = []
 var active_overlay = null
@@ -16,6 +17,8 @@ func _process(delta):
 		toggle_overlay(tabs_overlay)
 	if Input.is_action_just_pressed("search"):
 		toggle_overlay(search_bar)
+	if Input.is_action_just_pressed("settings"):
+		toggle_overlay(settings)
 	if Input.is_action_just_pressed("back"):
 		gui.current_browser.previous_page()
 	if Input.is_action_just_pressed("forward"):
