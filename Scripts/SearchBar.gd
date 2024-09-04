@@ -2,6 +2,9 @@ extends Control
 
 @onready var text_edit = $TextEdit
 
+var search_engines = ["https://duckduckgo.com/?q=", "https://pinterest.com/search/pins/?q="]
+var search_engine = 1
+
 func set_initial_state():
 	text_edit.grab_focus()
 
@@ -46,7 +49,7 @@ func get_url_from_search() -> String:
 		return "https://" + query
 	else:
 		var encoded_query = http_escape(query)
-		return "https://duckduckgo.com/?q=" + encoded_query
+		return search_engines[search_engine] + encoded_query
 
 	return ""
 

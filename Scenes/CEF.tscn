@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cg0dpkfqho8xs"]
+[gd_scene load_steps=23 format=3 uid="uid://cg0dpkfqho8xs"]
 
 [ext_resource type="Script" path="res://Scripts/CEF.gd" id="1_j4gvw"]
 [ext_resource type="Shader" path="res://Shaders/test.gdshader" id="1_of60d"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bqc4y2g8862jh" path="res://Scenes/SearchBar.tscn" id="5_i6ar6"]
 [ext_resource type="Shader" path="res://Shaders/wind.gdshader" id="5_j6ru3"]
 [ext_resource type="Shader" path="res://Shaders/BloodLossFeverBullshit.gdshader" id="6_6nit7"]
+[ext_resource type="PackedScene" uid="uid://d4gt87w0qay0d" path="res://Scenes/WelcomeScreen.tscn" id="6_hu3nc"]
 [ext_resource type="Shader" path="res://Shaders/test3.gdshader" id="7_tdbtu"]
 [ext_resource type="Script" path="res://Scripts/Camera.gd" id="9_0xrsy"]
 
@@ -215,6 +216,9 @@ offset_right = 840.0
 offset_bottom = 340.0
 
 [node name="Settings" parent="." instance=ExtResource("5_11a38")]
+visible = false
+
+[node name="WelcomeScreen" parent="." instance=ExtResource("6_hu3nc")]
 visible = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
