@@ -26,3 +26,5 @@ offset_left = 240.0
 offset_top = 316.0
 offset_right = 295.0
 offset_bottom = 342.0
+
+[connection signal="color_changed" from="ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]

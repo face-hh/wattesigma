@@ -18,11 +18,12 @@ var user_data = {
 func _ready():
 	non_fading_overlays.append(search_bar)
 	load_user_data()
-
+	print(user_data)
 	if user_data["first_time_opening"]:
 		toggle_input()
-		user_data["first_time_opening"] = false
-		save_user_data()
+		# TODO: change to false and call save when setup is done
+		# user_data["first_time_opening"] = false
+		# save_user_data()
 
 func _process(delta):
 	if Input.is_action_just_pressed("tab"): toggle_overlay(tabs_overlay)
@@ -37,7 +38,8 @@ func _process(delta):
 		gui.current_browser = browser
 
 func toggle_input():
-	welcome_screen.toggle_input()
+	print('showing welcome screen uwu')
+	welcome_screen.show()
 
 func toggle_overlay(new_overlay):
 	var tween = create_tween()

@@ -1,9 +1,10 @@
 extends Control
 
 @onready var text_edit = $TextEdit
+@onready var sprite_2d: Sprite2D = $Sprite2D
 
 var search_engines = ["https://duckduckgo.com/?q=", "https://pinterest.com/search/pins/?q="]
-var search_engine = 1
+var search_engine = 0
 
 func set_initial_state():
 	text_edit.grab_focus()
@@ -66,3 +67,7 @@ func http_escape(input: String) -> String:
 		else:
 			res += "%" + ("%02X" % ord)
 	return res
+
+func change_color(new_color: Color):
+	sprite_2d.modulate = new_color
+	text_edit.add_theme_color_override("background_color", new_color)

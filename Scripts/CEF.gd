@@ -218,7 +218,6 @@ func _input(event):
 		)
 
 func _on_texture_rect_resized():
-	print("WINDWO RESIZED!!!!!")
 	if current_browser == null:
 		return
 	current_browser.resize($Panel/VBox/TextureRect.get_size())
@@ -235,6 +234,8 @@ func _on_texture_rect_resized():
 	search_bar.position.y = (panel_size.y - search_bar_size.y) / 2
 
 func _ready():
+	Utils.change_main_color(Color.from_string("#000000", "#000000"))
+	
 	create_default_page()
 	
 	if !$CEF.initialize({

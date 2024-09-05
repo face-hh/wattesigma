@@ -1,6 +1,11 @@
 extends Node
 
 var google_url = "https://s2.googleusercontent.com/s2/favicons?domain_url={{DOMAIN}}"
+@onready var color_overlay: ColorRect = $/root/GUI/BlurOverlay/ColorOverlay
+@onready var tabs_overlay: Control = $/root/GUI/TabsOverlay
+@onready var search_bar: Control = $/root/GUI/SearchBar
+
+var MAIN_COLOR: Color
 
 func fetch_favicon(domain: String) -> ImageTexture:
 	var http_request = HTTPRequest.new()
@@ -43,3 +48,15 @@ func fetch_favicon(domain: String) -> ImageTexture:
 	
 	print("Favicon fetched successfully. Size: ", texture.get_size())
 	return texture
+
+func change_main_color(new_color: Color):
+	MAIN_COLOR = new_color
+	color_overlay.color.r = new_color.r
+	color_overlay.color.g = new_color.g
+	color_overlay.color.b = new_color.b
+	
+	search_bar.change_color(new_color)
+	tabs_overlay.change_color(new_color)
+
+func get_main_color():
+	return MAIN_COLOR

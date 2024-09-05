@@ -1,9 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqc4y2g8862jh"]
+[gd_scene load_steps=3 format=3 uid="uid://bqc4y2g8862jh"]
 
 [ext_resource type="Script" path="res://Scripts/SearchBar.gd" id="1_qomkm"]
-[ext_resource type="Texture2D" uid="uid://bpvqnk47p66ls" path="res://Assets/background.png" id="2_k476r"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7c5eb"]
+[ext_resource type="Texture2D" uid="uid://bno4nprlwsu5s" path="res://Assets/testing-bg.png" id="2_r4n3a"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -15,10 +13,9 @@ script = ExtResource("1_qomkm")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(247.75, 30)
 scale = Vector2(0.627921, 0.625)
-texture = ExtResource("2_k476r")
+texture = ExtResource("2_r4n3a")
 
 [node name="TextEdit" type="TextEdit" parent="." groups=["gui_input"]]
-material = SubResource("ShaderMaterial_7c5eb")
 layout_mode = 0
 offset_right = 483.0
 offset_bottom = 69.0

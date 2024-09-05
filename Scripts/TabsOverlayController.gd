@@ -13,6 +13,10 @@ const DEFAULT_TEXTURES = preload("res://default_tab.png")
 func _ready():
 	if container.get_child_count() > 0: set_initial_state()
 
+func change_color(new_color: Color):
+	for node in container.get_children():
+		node.change_color(new_color)
+
 func set_initial_state():
 	for i in range(container.get_child_count()):
 		var child = container.get_child(i)
