@@ -3,7 +3,7 @@ extends Control
 @onready var text_edit = $TextEdit
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
-var search_engines = ["https://duckduckgo.com/?q=", "https://pinterest.com/search/pins/?q=", "https://www.bbc.com/search?q=", "https://open.spotify.com/search/", "https://www.irs.gov/site-index-search?search=", "https://character.ai/search?q=", "https://praktiker.bg/bg/search/"]
+var search_engines = ["https://duckduckgo.com/?q=", "https://pinterest.com/search/pins/?q=", "https://www.bbc.com/search?q=", "https://www.roblox.com/discover/?Keyword=", "https://www.irs.gov/site-index-search?search=", "https://character.ai/search?q=", "https://praktiker.bg/bg/search/"]
 
 func set_initial_state():
 	text_edit.grab_focus()
