@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://xwo8wf8er8c0"]
+
+[ext_resource type="Script" path="res://Scripts/ColorPicker.gd" id="1_apts2"]
+
+[node name="ColorPickerButton" type="ColorPickerButton"]
+offset_right = 55.0
+offset_bottom = 26.0
+script = ExtResource("1_apts2")
+
+[connection signal="color_changed" from="." to="." method="_on_color_changed"]

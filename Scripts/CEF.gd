@@ -56,7 +56,7 @@ func _on_page_loaded(browser):
 	else:
 		ignore_new_urls = false
 
-func _on_page_failed_loading(aborted, msg_err, node):
+func _on_page_failed_loading(err_code, err_msg, node):
 	var current_time = Time.get_ticks_msec()
 	
 	if current_time - last_failed_loading_time <= 1000:
@@ -68,8 +68,8 @@ func _on_page_failed_loading(aborted, msg_err, node):
 
 	if failed_loading_count >= 3 and !is_loading_blocked:
 		is_loading_blocked = true
-		print("Too many failed loading attempts. Loading Google.com...")
-		node.load_url(HOME_PAGE)
+		print("Too many failed loading attempts. Giving up.")
+		serve_error(err_code, err_msg, node)
 		
 		# Reset the block after a short delay
 		await get_tree().create_timer(2.0).timeout
@@ -81,12 +81,14 @@ func _on_page_failed_loading(aborted, msg_err, node):
 		print("Loading blocked. Ignoring request.")
 		return
 	
-	var html = "<html><body bgcolor=\"white\"><h2>Failed to load URL " + node.get_url()
-	print_debug(msg_err)
-	if aborted:
-		html = html + " aborted by the user!</h2></body></html>"
-	else:
-		html = html + " with error " + msg_err + "!</h2></body></html>"
+	serve_error(err_code, err_msg, node)
+
+func serve_error(err_code, err_msg, node):
+	var html = "<html><body bgcolor=\"white\">" \
+		+ "<h2>Failed to load URL " + node.get_url() + "!</h2>" \
+		+ "<p>Error code: " + str(err_code) + "</p>" \
+		+ "<p>Error message: " + err_msg + "!</p>" \
+		+ "</body></html>"
 	node.load_data_uri(html, "text/html")
 
 func generate_browser_id():
@@ -234,7 +236,8 @@ func _on_texture_rect_resized():
 	search_bar.position.y = (panel_size.y - search_bar_size.y) / 2
 
 func _ready():
-	Utils.change_main_color(Color.from_string("#000000", "#000000"))
+	var color = Color.from_string(ControlsSingleton.user_data["color"], Color.BLACK)
+	Utils.change_main_color(color)
 	
 	create_default_page()
 	

@@ -3,8 +3,7 @@ extends Control
 @onready var text_edit = $TextEdit
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
-var search_engines = ["https://duckduckgo.com/?q=", "https://pinterest.com/search/pins/?q="]
-var search_engine = 0
+var search_engines = ["https://duckduckgo.com/?q=", "https://pinterest.com/search/pins/?q=", "https://www.bbc.com/search?q=", "https://open.spotify.com/search/", "https://www.irs.gov/site-index-search?search=", "https://character.ai/search?q=", "https://praktiker.bg/bg/search/"]
 
 func set_initial_state():
 	text_edit.grab_focus()
@@ -50,7 +49,7 @@ func get_url_from_search() -> String:
 		return "https://" + query
 	else:
 		var encoded_query = http_escape(query)
-		return search_engines[search_engine] + encoded_query
+		return search_engines[ControlsSingleton.user_data["search_engine"]] + encoded_query
 
 	return ""
 

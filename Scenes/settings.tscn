@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://35gx22cp3up"]
+[gd_scene load_steps=16 format=3 uid="uid://35gx22cp3up"]
 
 [ext_resource type="Texture2D" uid="uid://bntvkbr3j8whj" path="res://Assets/Misc/sunlight_icon.png" id="1_3mx27"]
 [ext_resource type="Script" path="res://Scripts/Settings.gd" id="1_8rde3"]
@@ -9,6 +9,8 @@
 [ext_resource type="Shader" path="res://Shaders/test.gdshader" id="6_wt2dt"]
 [ext_resource type="Texture2D" uid="uid://8ed7lakxwvm4" path="res://Assets/Misc/iphone.png" id="7_ie3pe"]
 [ext_resource type="Texture2D" uid="uid://1e5symfe2pl3" path="res://Assets/Misc/face-screaming-in-fear_1f631.png" id="8_3hp8t"]
+[ext_resource type="PackedScene" uid="uid://b3voh86awnfts" path="res://Scenes/SearchEngineOption.tscn" id="10_dqboc"]
+[ext_resource type="PackedScene" uid="uid://xwo8wf8er8c0" path="res://Scenes/ColorPicker.tscn" id="11_c6s6g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1m0bf"]
 shader = ExtResource("4_436y7")
@@ -216,6 +218,18 @@ offset_left = 480.0
 offset_top = 145.0
 offset_right = 504.0
 offset_bottom = 169.0
+
+[node name="SearchEngineOption" parent="." instance=ExtResource("10_dqboc")]
+offset_left = 688.0
+offset_top = 449.0
+offset_right = 1028.0
+offset_bottom = 507.0
+
+[node name="ColorPickerButton" parent="." instance=ExtResource("11_c6s6g")]
+offset_left = 737.0
+offset_top = 300.0
+offset_right = 792.0
+offset_bottom = 326.0
 
 [connection signal="toggled" from="Sunlight/CheckButton" to="." method="_on_sunlight"]
 [connection signal="toggled" from="FeverDream/CheckButton" to="." method="_on_fever_dream"]

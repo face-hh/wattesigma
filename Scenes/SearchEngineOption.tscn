@@ -1,0 +1,39 @@
+[gd_scene load_steps=9 format=3 uid="uid://b3voh86awnfts"]
+
+[ext_resource type="Texture2D" uid="uid://dn1xxlmxu338j" path="res://Assets/Misc/duckduckgo.png" id="1_xdbn2"]
+[ext_resource type="Texture2D" uid="uid://bfykdgpdu4yp5" path="res://Assets/Misc/pinterest.png" id="2_5u673"]
+[ext_resource type="Texture2D" uid="uid://cyxjyf6b3hs6q" path="res://Assets/Misc/bbc.png" id="3_4uaem"]
+[ext_resource type="Texture2D" uid="uid://dh8rtvc2n2mt7" path="res://Assets/Misc/roblox.png" id="4_rudmr"]
+[ext_resource type="Texture2D" uid="uid://bkxa3itl3la1m" path="res://Assets/Misc/irs.png" id="5_ym6nw"]
+[ext_resource type="Texture2D" uid="uid://d2p4a07bvrlh6" path="res://Assets/Misc/cai.png" id="6_2j4pm"]
+[ext_resource type="Texture2D" uid="uid://4sgeeegwatp1" path="res://Assets/Misc/praktiker.png" id="7_toe7n"]
+[ext_resource type="Script" path="res://Scripts/SearchEngineOption.gd" id="8_nnxma"]
+
+[node name="SearchEngineOption" type="OptionButton"]
+offset_right = 340.0
+offset_bottom = 58.0
+selected = 0
+item_count = 7
+popup/item_0/text = "DuckDuckGo"
+popup/item_0/icon = ExtResource("1_xdbn2")
+popup/item_1/text = "Pinterest"
+popup/item_1/icon = ExtResource("2_5u673")
+popup/item_1/id = 1
+popup/item_2/text = "British Broadcasting Corporation"
+popup/item_2/icon = ExtResource("3_4uaem")
+popup/item_2/id = 2
+popup/item_3/text = "Roblox"
+popup/item_3/icon = ExtResource("4_rudmr")
+popup/item_3/id = 4
+popup/item_4/text = "Internal Revenue Service (IRS)"
+popup/item_4/icon = ExtResource("5_ym6nw")
+popup/item_4/id = 5
+popup/item_5/text = "character ai"
+popup/item_5/icon = ExtResource("6_2j4pm")
+popup/item_5/id = 5
+popup/item_6/text = "Praktiker.bg"
+popup/item_6/icon = ExtResource("7_toe7n")
+popup/item_6/id = 6
+script = ExtResource("8_nnxma")
+
+[connection signal="item_selected" from="." to="." method="_on_item_selected"]

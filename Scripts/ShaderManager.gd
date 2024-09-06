@@ -19,14 +19,14 @@ enum ShaderType {
 @onready var camera: Camera2D = $/root/GUI/Camera2D
 
 var shader_states = {
-	ShaderType.SUNLIGHT: false,
+	ShaderType.SUNLIGHT: true,
 	ShaderType.SCREEN_CRACK: false,
 	ShaderType.FEVER_DREAM: false,
 	ShaderType.RANDOM_ASS_HIGHLIGHT: false,
 	
 	ShaderType.BLOCK_CAMERA_MOVEMENT: false,
-	ShaderType.CURSOR_FOLLOW_ON: false,
-	ShaderType.CIRCLE_FOLLOW_ON: false,
+	ShaderType.CURSOR_FOLLOW_ON: true,
+	ShaderType.CIRCLE_FOLLOW_ON: true,
 }
 
 func _ready():

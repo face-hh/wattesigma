@@ -5,7 +5,8 @@ var google_url = "https://s2.googleusercontent.com/s2/favicons?domain_url={{DOMA
 @onready var tabs_overlay: Control = $/root/GUI/TabsOverlay
 @onready var search_bar: Control = $/root/GUI/SearchBar
 
-var MAIN_COLOR: Color
+var MAIN_COLOR := Color.BLACK
+var search_engine = 0
 
 func fetch_favicon(domain: String) -> ImageTexture:
 	var http_request = HTTPRequest.new()
@@ -51,12 +52,13 @@ func fetch_favicon(domain: String) -> ImageTexture:
 
 func change_main_color(new_color: Color):
 	MAIN_COLOR = new_color
+
 	color_overlay.color.r = new_color.r
 	color_overlay.color.g = new_color.g
 	color_overlay.color.b = new_color.b
 	
 	search_bar.change_color(new_color)
 	tabs_overlay.change_color(new_color)
-
-func get_main_color():
-	return MAIN_COLOR
+	
+	ControlsSingleton.user_data["color"] = new_color.to_html(false)
+	ControlsSingleton.save_user_data()

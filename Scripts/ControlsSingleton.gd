@@ -12,18 +12,16 @@ var active_overlay = null
 
 var user_data = {
 	"first_time_opening": true,
-	"color": "#ffffff"
+	"color": Color.BLACK.to_html(false),
+	"search_engine": 0
 }
 
 func _ready():
 	non_fading_overlays.append(search_bar)
 	load_user_data()
-	print(user_data)
+
 	if user_data["first_time_opening"]:
 		toggle_input()
-		# TODO: change to false and call save when setup is done
-		# user_data["first_time_opening"] = false
-		# save_user_data()
 
 func _process(delta):
 	if Input.is_action_just_pressed("tab"): toggle_overlay(tabs_overlay)
@@ -38,8 +36,11 @@ func _process(delta):
 		gui.current_browser = browser
 
 func toggle_input():
-	print('showing welcome screen uwu')
-	welcome_screen.show()
+	if not welcome_screen.visible:
+		welcome_screen.show()
+	else:
+		welcome_screen.hide()
+	
 
 func toggle_overlay(new_overlay):
 	var tween = create_tween()
@@ -77,6 +78,8 @@ func fade_out(tween, node, duration):
 	tween.tween_callback(func(): node.visible = false)
 
 func load_user_data():
+	user_data["color"] = Utils.MAIN_COLOR.to_html(false)
+	
 	if FileAccess.file_exists("user://user_data.dat"):
 		var save_file = FileAccess.open("user://user_data.dat", FileAccess.READ)
 		user_data = save_file.get_var()

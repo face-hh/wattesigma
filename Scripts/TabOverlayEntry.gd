@@ -7,7 +7,7 @@ extends Control
 var url
 
 func _ready():
-	change_color(Utils.get_main_color())
+	change_color(Utils.MAIN_COLOR)
 
 func change_to(texture: Variant, new_label: String, new_url: String):
 	icon.texture = texture

@@ -1,9 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://d4gt87w0qay0d"]
+[gd_scene load_steps=5 format=3 uid="uid://d4gt87w0qay0d"]
 
 [ext_resource type="Script" path="res://Scripts/WelcomeScreen.gd" id="1_wvycw"]
+[ext_resource type="PackedScene" uid="uid://bqc4y2g8862jh" path="res://Scenes/SearchBar.tscn" id="2_v47en"]
+[ext_resource type="PackedScene" uid="uid://b3voh86awnfts" path="res://Scenes/SearchEngineOption.tscn" id="4_2fvtg"]
+[ext_resource type="PackedScene" uid="uid://xwo8wf8er8c0" path="res://Scenes/ColorPicker.tscn" id="10_cadhr"]
 
 [node name="WelcomeScreen" type="Node2D"]
 script = ExtResource("1_wvycw")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = -1248.0
+offset_top = -887.0
+offset_right = 2825.0
+offset_bottom = 1526.0
+color = Color(1, 0.509804, 1, 1)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = 383.0
@@ -21,10 +31,77 @@ scale = Vector2(0.445, 0.445)
 theme_override_font_sizes/font_size = 56
 text = "Welcome to Bussin Wattesigma"
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="."]
-offset_left = 240.0
-offset_top = 316.0
-offset_right = 295.0
-offset_bottom = 342.0
+[node name="Label2" type="Label" parent="."]
+offset_left = 141.0
+offset_top = 248.0
+offset_right = 1293.0
+offset_bottom = 412.0
+scale = Vector2(0.445, 0.445)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 105
+theme_override_font_sizes/font_size = 56
+text = "please choose a color you please for the UI"
 
-[connection signal="color_changed" from="ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
+[node name="Label3" type="Label" parent="."]
+offset_left = 100.0
+offset_top = 387.0
+offset_right = 1252.0
+offset_bottom = 551.0
+scale = Vector2(0.445, 0.445)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 56
+text = "dont worry you can change it later"
+
+[node name="Label4" type="Label" parent="."]
+offset_left = 120.0
+offset_top = 410.0
+offset_right = 1272.0
+offset_bottom = 574.0
+scale = Vector2(0.445, 0.445)
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 31
+text = "heres an overview"
+
+[node name="Label5" type="Label" parent="."]
+offset_left = 719.0
+offset_top = 85.0
+offset_right = 1871.0
+offset_bottom = 249.0
+scale = Vector2(0.445, 0.445)
+theme_override_colors/font_color = Color(1.00112e-05, 0.954993, 0.857199, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 51
+text = "search engine"
+
+[node name="Control" parent="." instance=ExtResource("2_v47en")]
+offset_left = 92.0
+offset_top = 454.0
+offset_right = 595.0
+offset_bottom = 523.0
+
+[node name="ColorPickerButton2" parent="." instance=ExtResource("10_cadhr")]
+offset_left = 242.0
+offset_top = 315.0
+offset_right = 297.0
+offset_bottom = 341.0
+
+[node name="SearchEngineOption" parent="." instance=ExtResource("4_2fvtg")]
+offset_left = 717.0
+offset_top = 132.0
+offset_right = 1057.0
+offset_bottom = 190.0
+
+[node name="Button" type="Button" parent="."]
+offset_left = 662.0
+offset_top = 376.0
+offset_right = 805.0
+offset_bottom = 407.0
+theme_override_font_sizes/font_size = 36
+text = "okay done lets go"
+
+[connection signal="color_changed" from="ColorPickerButton2" to="." method="_on_color_picker_button_color_changed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
