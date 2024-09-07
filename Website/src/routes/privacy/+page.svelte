@@ -78,3 +78,7 @@
 		<Button variant="outline" class="animate-bounce">No devious trickery, pinkie promise</Button>
 	</div>
 </div>
+
+<svelte:head>
+	<title>Wattesigma - Privacy</title>
+</svelte:head>

@@ -101,3 +101,7 @@
 		</Button>
 	</div>
 </div>
+
+<svelte:head>
+	<title>Wattesigma - About Us</title>
+</svelte:head>

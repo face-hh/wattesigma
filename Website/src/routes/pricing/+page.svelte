@@ -131,3 +131,7 @@
 		</Button>
 	</div>
 </div>
+
+<svelte:head>
+	<title>Wattesigma - Privacy</title>
+</svelte:head>

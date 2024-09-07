@@ -114,3 +114,7 @@
 		</Button>
 	</div>
 </div>
+
+<svelte:head>
+	<title>Wattesigma</title>
+</svelte:head>
