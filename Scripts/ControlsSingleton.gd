@@ -6,6 +6,10 @@ extends Node
 @onready var search_bar = $/root/GUI/SearchBar
 @onready var settings = $/root/GUI/Settings
 @onready var welcome_screen = $/root/GUI/WelcomeScreen
+@onready var info = $/root/GUI/InfoScreen
+@onready var file_dialog = $/root/GUI/FileDialog
+
+var SAVED_PAGE
 
 var non_fading_overlays = []
 var active_overlay = null
@@ -17,6 +21,7 @@ var user_data = {
 }
 
 func _ready():
+	file_dialog.connect("file_selected", _dialog_file_selected)
 	non_fading_overlays.append(search_bar)
 	load_user_data()
 
@@ -27,10 +32,12 @@ func _process(delta):
 	if Input.is_action_just_pressed("tab"): toggle_overlay(tabs_overlay)
 	if Input.is_action_just_pressed("search"): toggle_overlay(search_bar)
 	if Input.is_action_just_pressed("settings"): toggle_overlay(settings)
+	if Input.is_action_just_pressed("info"): toggle_overlay(info)
 	if Input.is_action_just_pressed("back"): gui.current_browser.previous_page()
 	if Input.is_action_just_pressed("forward"): gui.current_browser.next_page()
 	if Input.is_action_just_pressed("home"): gui.current_browser.load_url(gui.HOME_PAGE)
 	if Input.is_action_just_pressed("refresh"): gui.current_browser.reload()
+	if Input.is_action_just_pressed("save_page"): file_dialog.show()
 	if Input.is_action_just_pressed("new"):
 		var browser = await gui.create_browser("file://" + ProjectSettings.globalize_path(gui.DEFAULT_PAGE))
 		gui.current_browser = browser
@@ -89,3 +96,16 @@ func save_user_data():
 	var save_file = FileAccess.open("user://user_data.dat", FileAccess.WRITE)
 	save_file.store_var(user_data)
 	save_file.close()
+
+func _on_saving_page():
+	print(SAVED_PAGE.replace("{TAB_TITLE}", gui.current_browser.get_title()))
+	var file = FileAccess.open(SAVED_PAGE.replace("{TAB_TITLE}", gui.current_browser.get_title()), FileAccess.WRITE)
+	if file != null:
+		var html = gui.current_browser.get_html()
+		print(html)
+		file.store_string(html)
+		file.close()
+
+func _dialog_file_selected(path: String):
+	SAVED_PAGE = path
+	_on_saving_page()

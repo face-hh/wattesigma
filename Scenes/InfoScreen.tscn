@@ -1,0 +1,220 @@
+[gd_scene load_steps=4 format=3 uid="uid://cir8rv3babeax"]
+
+[ext_resource type="Texture2D" uid="uid://gr6vfee0xn65" path="res://Assets/Misc/noshit.png" id="1_ae8kg"]
+[ext_resource type="FontFile" uid="uid://b3l7o8f44t2or" path="res://Assets/Fonts/BaskervvilleSC-Regular.ttf" id="1_jn0xl"]
+[ext_resource type="Script" path="res://Scripts/InfoScreen.gd" id="1_kwn3w"]
+
+[node name="WelcomeScreen" type="Node2D"]
+script = ExtResource("1_kwn3w")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = 136.0
+offset_top = 198.0
+offset_right = 238.0
+offset_bottom = 223.0
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+offset_left = 138.0
+offset_top = 227.0
+offset_right = 240.0
+offset_bottom = 252.0
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+offset_left = 139.0
+offset_top = 329.0
+offset_right = 329.0
+offset_bottom = 354.0
+
+[node name="ColorRect5" type="ColorRect" parent="."]
+offset_left = 140.0
+offset_top = 253.0
+offset_right = 198.0
+offset_bottom = 278.0
+
+[node name="ColorRect6" type="ColorRect" parent="."]
+offset_left = 142.0
+offset_top = 277.0
+offset_right = 200.0
+offset_bottom = 302.0
+
+[node name="ColorRect7" type="ColorRect" parent="."]
+offset_left = 142.0
+offset_top = 303.0
+offset_right = 200.0
+offset_bottom = 328.0
+
+[node name="ColorRect8" type="ColorRect" parent="."]
+offset_left = 139.0
+offset_top = 406.0
+offset_right = 219.0
+offset_bottom = 431.0
+
+[node name="ColorRect9" type="ColorRect" parent="."]
+offset_left = 148.0
+offset_top = 435.0
+offset_right = 167.0
+offset_bottom = 460.0
+
+[node name="ColorRect10" type="ColorRect" parent="."]
+offset_left = 149.0
+offset_top = 460.0
+offset_right = 196.0
+offset_bottom = 481.0
+
+[node name="ColorRect11" type="ColorRect" parent="."]
+offset_left = 148.0
+offset_top = 487.0
+offset_right = 215.0
+offset_bottom = 508.0
+
+[node name="ColorRect12" type="ColorRect" parent="."]
+offset_left = 139.0
+offset_top = 512.0
+offset_right = 196.0
+offset_bottom = 533.0
+
+[node name="ColorRect13" type="ColorRect" parent="."]
+offset_left = 140.0
+offset_top = 537.0
+offset_right = 197.0
+offset_bottom = 558.0
+
+[node name="ColorRect14" type="ColorRect" parent="."]
+offset_left = 138.0
+offset_top = 563.0
+offset_right = 195.0
+offset_bottom = 584.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 253.0
+offset_top = 37.0
+offset_right = 498.0
+offset_bottom = 72.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 106.0
+offset_top = 36.0
+offset_right = 956.0
+offset_bottom = 113.0
+scale = Vector2(0.445, 0.445)
+theme_override_font_sizes/font_size = 56
+text = "Welcome to Bussin Wattesigma!"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 113.0
+offset_top = 143.0
+offset_right = 1265.0
+offset_bottom = 307.0
+scale = Vector2(0.445, 0.445)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 105
+theme_override_font_sizes/font_size = 56
+text = "shortcuts:"
+metadata/_edit_lock_ = true
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 129.0
+offset_top = 199.0
+offset_right = 1281.0
+offset_bottom = 363.0
+scale = Vector2(0.445, 0.445)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 40
+text = "- CTRL ALT A - go back
+- CTRL ALT D - go forward
+- CTRL R - refresh page
+- CTRL N - new tab
+- CTRL H - navigate home
+- CTRL SHIFT ALT WIN C - save page as HTML
+
+## WATTESIGMA CERTIFIED ##
+- CTRL Tab - tab list
+  - ↑↓ - navigate through list
+  - Enter - choose page & exit UI
+  - CTRL W - close page
+- CTRL L - search
+- CTRL S - settings
+- CTRL I - this info screen"
+metadata/_edit_lock_ = true
+
+[node name="Label4" type="Label" parent="."]
+offset_left = 107.0
+offset_top = 71.0
+offset_right = 1259.0
+offset_bottom = 235.0
+scale = Vector2(0.445, 0.445)
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 31
+text = "made by facedev"
+
+[node name="Label5" type="Label" parent="."]
+offset_left = 108.0
+offset_top = 96.0
+offset_right = 1260.0
+offset_bottom = 260.0
+scale = Vector2(0.445, 0.445)
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 31
+text = "special thanks to"
+
+[node name="LinkButton" type="LinkButton" parent="."]
+offset_left = 226.0
+offset_top = 92.0
+offset_right = 268.0
+offset_bottom = 132.0
+text = "gdcef"
+uri = "https://github.com/Lecrapouille/gdcef"
+
+[node name="LinkButton2" type="LinkButton" parent="."]
+offset_left = 613.0
+offset_top = 263.0
+offset_right = 979.0
+offset_bottom = 327.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 15
+theme_override_constants/underline_spacing = 20
+theme_override_fonts/font = ExtResource("1_jn0xl")
+theme_override_font_sizes/font_size = 46
+text = "wattesigma.com"
+uri = "https://wattesigma.com"
+
+[node name="Label6" type="Label" parent="."]
+offset_left = 641.0
+offset_top = 157.0
+offset_right = 681.0
+offset_bottom = 180.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -50
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 30
+theme_override_constants/shadow_outline_size = 50
+theme_override_font_sizes/font_size = 51
+text = "CHECK OUT"
+
+[node name="Noshit" type="Sprite2D" parent="."]
+position = Vector2(757, 448)
+texture = ExtResource("1_ae8kg")
+
+[node name="Label7" type="Label" parent="."]
+offset_left = 1030.0
+offset_top = 548.0
+offset_right = 1556.0
+offset_bottom = 909.0
+scale = Vector2(0.16, 0.16)
+text = "This is a memorial for Lyntr, the micro-blogging platform that lived fast and died young. For four fleeting days, Lyntr offered us to express love in 280-characters. Going from a 2 min 30 sec loading time to less than 10 seconds, we enjoyed every moment of it.
+
+Lyntr, your brief existence reminded us that in the world of projects, the boldest ideas often burn the brightest – and sometimes the fastest. You will be remembered not for how long you lived, but for the fun you brought in your brief time with us.
+
+Rest in peace, Lyntr.
+
+Signed,
+Face, in the name of The Users Who Knew You (For About 96 Hours)"
+autowrap_mode = 2
