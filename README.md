@@ -10,6 +10,8 @@ https://github.com/user-attachments/assets/192a330c-4102-4b84-b50d-1f1698d87fa7
 
 The ultimate web browser, built with a game engine.
 
+https://wattesigma.com
+
 ## About
 
 Bussin Wattesigma is a web browser built with the Godot Engine and powered by the Chromium Embedded Framework (CEF). It revolutionises the web browsing experience by allowing you to use **shaders** and a bunch of other stuff that is supposed to "entertain" you.
