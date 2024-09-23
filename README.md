@@ -2,7 +2,11 @@
 
 <img style="width: 128px; height: 128px" src="Website\static\favicon.png" />
 
-![Bussin Wattesigma](https://github.com/face-hh/wattesigma/raw/refs/heads/main/github_assets/preview.mp4)
+
+
+https://github.com/user-attachments/assets/192a330c-4102-4b84-b50d-1f1698d87fa7
+
+
 
 The ultimate web browser, built with a game engine.
 
