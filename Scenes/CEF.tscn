@@ -271,7 +271,6 @@ offset_bottom = 648.0
 mouse_filter = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
-visible = false
 offset = Vector2(576, 324)
 zoom = Vector2(1.03, 1.03)
 script = ExtResource("9_0xrsy")
