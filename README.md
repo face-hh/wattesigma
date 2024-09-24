@@ -50,7 +50,7 @@ You wiww need:
 - Pwess `CTWW` + `L` and entew a UWW in the *boops your nose* addwess baw.
 - Pwess `CTWW` + `S` to change some settings.
 
-### Contwibuting
+## Contwibuting
 
 We wewcome UwU c-contwibutions to Bussin Wattesigma?!?1 Pwease k-k-keep the *boops your nose* fowwowing in mind:
 
@@ -59,7 +59,7 @@ We wewcome UwU c-contwibutions to Bussin Wattesigma?!?1 Pwease k-k-keep the *boo
 - wwite UwU cweaw, concise commit messages.
 - Update d-documentation as needed.
 
-### Wicense
+## Wicense
 
 This pwoject is wicensed undew the *boops your nose* A-Apache 2.0 W-Wicense. See the *boops your nose* [LICENSE](LICENSE.md) fiwe fow detaiws.
 
