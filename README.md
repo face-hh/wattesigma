@@ -25,7 +25,7 @@ Please download **Bussin Wattesigma** from the [Releases](https://github.com/fac
 
 You will need:
 - [Godot Engine](https://godotengine.org/) (version 4.x or later)
-- [CEF (Chromium Embedded Framework)](https://github.com/face-hh/wattesigma/releases) (`cef_artifacts.zip`)
+- [CEF (Chromium Embedded Framework)]([https://github.com/face-hh/wattesigma/releases](https://github.com/Lecrapouille/gdcef/releases/tag/v0.12.1-godot4)) (`cef_artifacts`)
 
 ### Getting Started
 
@@ -37,8 +37,8 @@ You will need:
 2. Open the project in Godot Engine.
 
 3. Configure CEF:
-   - Download the `cef_artifacts.zip` file off the [Releases](https://github.com/face-hh/wattesigma/releases) of this repo.
-   - Extract the contents to the project root.
+   - Download the `cef_artifacts` file off the [Releases](https://github.com/Lecrapouille/gdcef/releases/tag/v0.12.1-godot4) from the `gdcef` repository.
+   - Extract the contents to the project root. You should have the folders `cef_artifacts, Website, Assets, Shaders, ...`
 
 4. Run the project from the Godot editor or export it for your target platform.
 
