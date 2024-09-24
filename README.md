@@ -8,64 +8,64 @@ https://github.com/user-attachments/assets/192a330c-4102-4b84-b50d-1f1698d87fa7
 
 
 
-The ultimate web browser, built with a game engine.
+T-The uwtimate web bwowsew, buiwt with a game enginye.
 
 https://wattesigma.com
 
-## About
+## about *sweats*
 
-Bussin Wattesigma is a web browser built with the Godot Engine and powered by the Chromium Embedded Framework (CEF). It revolutionises the web browsing experience by allowing you to use **shaders** and a bunch of other stuff that is supposed to "entertain" you.
+Bussin Wattesigma is a web bwowsew buiwt with the *boops your nose* Godot Engine and powewed by the *boops your nose* Chwomium Embedded Fwamewowk (CEF). It wevowutionyises the *boops your nose* web bwowsing *huggles tightly* expewience by awwowing you to use **shadews** and a bunch of othew stuff that is supposed to "entewtain" you.
 
-## Setup and Installation
+Setup and Instawwation
 
-### Pre-built
-Please download **Bussin Wattesigma** from the [Releases](https://github.com/face-hh/wattesigma/releases) tab.
+### Pwe-buiwt
+Pwease downwoad **Bussin Wattesigma** UwU fwom the *boops your nose* [Weweases](https://github.com/face-hh/wattesigma/releases) tab.
 
-### Compiling
+### Compiwing
 
-You will need:
-- [Godot Engine](https://godotengine.org/) (version 4.x or later)
+You wiww need:
+- [Godot Engine](https://godotengine.org/) (vewsion 4.x or watew)
 - [CEF (Chromium Embedded Framework)](https://github.com/face-hh/wattesigma/releases) (`cef_artifacts.zip`)
 
-### Getting Started
+### Getting Stawted
 
-1. Clone the repository:
+1. Clonye the *boops your nose* repository:
    ```
    git clone https://github.com/face-hh/wattesigma.git
    ```
 
-2. Open the project in Godot Engine.
+2. Open the *boops your nose* pwoject in Godot Enginye.
 
-3. Configure CEF:
-   - Download the `cef_artifacts.zip` file off the [Releases](https://github.com/face-hh/wattesigma/releases) of this repo.
-   - Extract the contents to the project root.
+3. Configuwe C-CEF:
+   - Download the *boops your nose* `cef_artifacts.zip` fiwe off the [Weweases](https://github.com/face-hh/wattesigma/releases) of this wepo.
+   - Extwact the contents to the pwoject woot.
 
-4. Run the project from the Godot editor or export it for your target platform.
+4. Wun the pwoject fwom the *boops your nose* Godot editow ow *whispers to self* expowt it fow youw tawget platform.
 
 ## Usage
 
-- Launch the Bussin Wattesigma browser
-- If run for the first time, you'll be greeted with a welcome page.
-- Press `CTRL` + `I` for all the available shortcuts.
-- Press `CTRL` + `L` and enter a URL in the address bar.
-- Press `CTRL` + `S` to change some settings.
+- Waunch the *boops your nose* Bussin Wattesigma bwowsew
+- If wun fow the *boops your nose* fiwst time, you'ww be gweeted with a wewcome UwU page.
+- >w< Pwess `CTWW` + `I` fow all the *boops your nose* avaiwabwe showtcuts.
+- Pwess `CTWW` + `L` and entew a UWW in the *boops your nose* addwess baw.
+- Pwess `CTWW` + `S` to change some settings.
 
-## Contributing
+### Contwibuting
 
-We welcome contributions to Bussin Wattesigma! Please keep the following in mind:
+We wewcome UwU c-contwibutions to Bussin Wattesigma?!?1 Pwease k-k-keep the *boops your nose* fowwowing in mind:
 
-- Open an issue before starting work on major changes or new features, as it may create conflicts with existing pull requests, or the rewrite you wish to do isn't needed.
-- Follow the existing code style and conventions.
-- Write clear, concise commit messages.
-- Update documentation as needed.
+- Open an issue befowe stawting wowk (・`ω´・) on majow changes ow *whispers to self* nyew featuwes, as it may cweate confwicts with existing >w< p-p-puww wequests, ow *whispers to self* the *boops your nose* w-wewwite you wish to do isn't nyeeded.
+- Fowwow the *boops your nose* existing >w< code stywe and conventions.
+- wwite UwU cweaw, concise commit messages.
+- Update d-documentation as needed.
 
-## License
+#-## Wicense
 
-This project is licensed under the Apache 2.0 License. See the [LICENSE](LICENSE.md) file for details.
+This pwoject is wicensed undew the *boops your nose* A-Apache 2.0 W-Wicense. See the *boops your nose* [LICENSE](LICENSE.md) fiwe fow detaiws.
 
-## Acknowledgments
+## Acknyowledgments
 
-- The Godot Engine community
-- The [gdcef](https://github.com/Lecrapouille/gdcef) project contributors
+- T-The Godot Engine community
+- T-The [gdcef]([https://github.com/Wecwapouiwwe/gdcef](https://github.com/Lecrapouille/gdcef)) pwoject contwibutows
 
-Created with skibidi by facedev
+Cweated with skibidi by facedev
