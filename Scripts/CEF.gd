@@ -163,34 +163,38 @@ func _on_mute_pressed():
 func _on_TextureRect_gui_input(event):
 	if current_browser == null:
 		return
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-			current_browser.set_mouse_wheel_vertical(2)
-		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-			current_browser.set_mouse_wheel_vertical(-2)
-		elif event.button_index == MOUSE_BUTTON_LEFT:
-			mouse_pressed = event.pressed
+	
+	match event:
+		InputEventMouseButton:
+			match event.button_index:
+				MOUSE_BUTTON_WHEEL_UP:
+					current_browser.set_mouse_wheel_vertical(2)
+				MOUSE_BUTTON_WHEEL_DOWN:
+					current_browser.set_mouse_wheel_vertical(-2)
+				MOUSE_BUTTON_LEFT:
+					mouse_pressed = event.pressed
+					if mouse_pressed:
+						current_browser.set_mouse_left_down()
+					else:
+						current_browser.set_mouse_left_up()
+				MOUSE_BUTTON_RIGHT:
+					mouse_pressed = event.pressed
+					if mouse_pressed:
+						current_browser.set_mouse_right_down()
+					else:
+						current_browser.set_mouse_right_up()
+				_:
+					mouse_pressed = event.pressed
+					if mouse_pressed:
+						current_browser.set_mouse_middle_down()
+					else:
+						current_browser.set_mouse_middle_up()
+		InputEventMouseMotion:
 			if mouse_pressed:
 				current_browser.set_mouse_left_down()
-			else:
-				current_browser.set_mouse_left_up()
-		elif event.button_index == MOUSE_BUTTON_RIGHT:
-			mouse_pressed = event.pressed
-			if mouse_pressed:
-				current_browser.set_mouse_right_down()
-			else:
-				current_browser.set_mouse_right_up()
-		else:
-			mouse_pressed = event.pressed
-			if mouse_pressed:
-				current_browser.set_mouse_middle_down()
-			else:
-				current_browser.set_mouse_middle_up()
-	elif event is InputEventMouseMotion:
-		if mouse_pressed:
-			current_browser.set_mouse_left_down()
-		current_browser.set_mouse_moved(event.position.x, event.position.y)
-	pass
+			current_browser.set_mouse_moved(event.position.x, event.position.y)
+
+
 
 func _input(event):
 	if current_browser == null:
