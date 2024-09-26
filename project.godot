@@ -96,5 +96,7 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
 viewport/hdr_2d=true
 environment/defaults/default_environment="res://default_env.tres"
